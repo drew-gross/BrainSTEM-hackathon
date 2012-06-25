@@ -1,3 +1,4 @@
+$(function(){
 Crafty.init(600, 300);
 Crafty.Box2D.init();
 Crafty.background('rgb(127,127,127)');
@@ -43,21 +44,29 @@ _.each(walls, function(p,i){
 
 var rToD = (360/(2*Math.PI));
 
+window.Game = {}
+Game.running = false;
+
 var Robot = Crafty.e("DOM, Color, Box2D")
 .color('rgb(0,0,255)')
-.attr({ x: 200, y: 100, w: 40, h: 40, type:"dynamic", friction:1})
+.attr({ x: 200, y: 100, w: 40, h: 40, type:"dynamic", friction:1,
+leftMotor: 0, rightMotor: 0})
 .bind('EnterFrame', function (data) {
     var center = this.body.GetLocalCenter();
-    var robotAngle = this.body.GetAngle();
-    var leftMotor = new Box2D.Common.Math.b2Vec2(0,1);
-    var rightMotor =  new Box2D.Common.Math.b2Vec2(0,0.99999);
-    this.body.ApplyForce(
-        this.body.GetWorldVector(leftMotor),
-        this.body.GetWorldPoint(new Box2D.Common.Math.b2Vec2(0,0.6666)));
-    this.body.ApplyForce(
-        this.body.GetWorldVector(rightMotor),
-        this.body.GetWorldPoint(new Box2D.Common.Math.b2Vec2(40/30,0.6666)));
+    if(Game.running && data.frame % 1 == 0){
+        var outputs = UserCode.run({lightsensor1: 60});
+        this.leftMotor = new Box2D.Common.Math.b2Vec2(0,outputs.motor1);
+        this.rightMotor =  new Box2D.Common.Math.b2Vec2(0,outputs.motor2 - 1.0e-5);
+    }
+    if(this.leftMotor.y > 0.001){
+        this.body.ApplyForce(
+            this.body.GetWorldVector(this.leftMotor),
+            this.body.GetWorldPoint(new Box2D.Common.Math.b2Vec2(0,0.6666)));
+    }
+    if(this.rightMotor.y > 0.001){
+        this.body.ApplyForce(
+            this.body.GetWorldVector(this.rightMotor),
+            this.body.GetWorldPoint(new Box2D.Common.Math.b2Vec2(40/30,0.6666)));
+    }
 })
-.onHit('Wall', function () {
-    console.log("Collide");
 });
