@@ -5,6 +5,10 @@ $(function () {
 	    , start_highlight: true		// to display with highlight mode on start-up
     });
     $("#run").click(function () {
+        var inputs = {lightsensor1: 100};
+        var outputs = {};
         eval(editAreaLoader.getValue("usercode"));
+        console.log(inputs);
+        console.log(outputs);
     });
 });
