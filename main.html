@@ -2,16 +2,76 @@
 <head>	
 	<script type="text/javascript" src="crafty.js"></script>
     <script type="text/javascript" src="jQuery.js"></script>
+    <script type="text/javascript" src="jquery-ui-1.8.21.custom.min.js"></script>
 	<script type="text/javascript" src="Box2dWeb.js"></script>
 	<script type="text/javascript" src="craftybox.js"></script>
     <script type="text/javascript" src="editarea_0_8_2/edit_area/edit_area_full.js" ></script>
 	<script type="text/javascript" src="underscore.js"></script>
+    <style>
+.robot-cell, .tool-box-cell{
+width:32px;
+height:32px;
+border-style:solid;
+border-width:1px;
+border-color:black;
+}
+    </style>
 </head>
 <body>
     <script type="text/javascript" src="codeEditor.js"></script>
 	<script type="text/javascript" src="game.js"></script>
+    <table id="robot-design">
+        <tr class="robot-cell-row">
+            <td class="robot-cell">
+            </td>
+            <td class="robot-cell">
+            </td>
+            <td class="robot-cell">
+            </td>
+            <td class="robot-cell">
+            </td>
+        </tr>
+        <tr class="robot-cell-row">
+            <td class="robot-cell">
+            </td>
+            <td class="robot-cell">
+            </td>
+            <td class="robot-cell">
+            </td>
+            <td class="robot-cell">
+            </td>
+        </tr>
+        <tr class="robot-cell-row">
+            <td class="robot-cell">
+            </td>
+            <td class="robot-cell">
+            </td>
+            <td class="robot-cell">
+            </td>
+            <td class="robot-cell">
+            </td>
+        </tr>
+        <tr class="robot-cell-row">
+            <td class="robot-cell">
+            </td>
+            <td class="robot-cell">
+            </td>
+            <td class="robot-cell">
+            </td>
+            <td class="robot-cell">
+            </td>
+        </tr>
+    </table>
     <div id="cr-stage"></div>
-    <div><button id="run" type="button">Upload your code</button></div>
+    <div>
+        <button id="run" type="button">Upload your code</button>
+        <table id="robot-parts">
+            <tr>
+                <td class="tool-box-cell"><img class="robot-part" src="img/motor.bmp" /></td>
+                <td class="tool-box-cell"><img class="robot-part" src="img/wheel.bmp" /></td>
+            </tr>
+        </table>
+    </div>
     <textarea id="usercode" cols="100" rows="50">if (inputs.lightsensor1 &gt; 50) {
 	outputs.motor1 = 0.1;
 	outputs.motor2 = 0.1;
