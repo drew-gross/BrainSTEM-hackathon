@@ -9,12 +9,11 @@ $(function () {
     UserCode.run = function(inputs){
         var outputs = {};
         eval(UserCode.code);
-        console.log(inputs);
-        console.log(outputs);
         return outputs;
     };
 
     $("#run").click(function () {
         UserCode.code = editAreaLoader.getValue("usercode");
+        Game.running = true;
     });
 });
