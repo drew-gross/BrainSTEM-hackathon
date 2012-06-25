@@ -1,0 +1,36 @@
+html{
+	height: 100%;
+}
+
+body{
+	/*background-color:#d0e4fe;*/
+	margin-top:50px;
+	font:13px/1.5 'Helvetica Neue',Arial,'Liberation Sans',FreeSans,sans-serif;
+	margin-right:0;
+	margin-left:0;
+	width: 1160px;
+    margin: auto;
+}
+
+h1 {
+    font-size: 15px;
+    font-weight: 700;
+}
+
+h2 {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+a {
+    color: inherit;
+    font-weight: 650;
+}
+
+a:hover, a:active {
+    font-weight: 800;
+}
+
+a:visited {
+    color: #777;
+}
