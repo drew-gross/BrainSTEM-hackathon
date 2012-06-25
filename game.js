@@ -1,4 +1,5 @@
 Crafty.init(600, 300);
+Crafty.Box2D.init();
 Crafty.background('rgb(127,127,127)');
 
 var walls = [
@@ -17,21 +18,21 @@ var wall = function(p1,p2){
         var len = Math.max(p1.y, p2.y) - start;
         attrs = {
             x: p1.x - 8,
-            y: start + 8,
+            y: start - 8,
             w: 16,
-            h: len
+            h: len + 16
         };
     } else {
         var start = Math.min(p1.x, p2.x);
         var len = Math.max(p1.x, p2.x) - start;
         attrs = {
-            x: start + 8,
+            x: start - 8,
             y: p1.y - 8,
-            w: len,
+            w: len + 16,
             h: 16
         };
     }
-    Crafty.e("Wall, 2D, DOM, Color, Collision")
+    Crafty.e("Wall, DOM, Color, Box2D")
         .color('rgb(0,0,0)')
         .attr(attrs);
 };
@@ -42,22 +43,21 @@ _.each(walls, function(p,i){
 
 var rToD = (360/(2*Math.PI));
 
-//Ball
-Crafty.e("2D, DOM, Color, Collision").
-color('rgb(0,0,255)').
-attr({ x: 200, y: 100, w: 40, h: 40,
-    rotation: 45,
-    leftMotor: 2,
-    rightMotor: 2
-}).
-origin({x:20, y:20}).bind('EnterFrame', function () {
-    var speed = (this.leftMotor + this.rightMotor)/2;
-    this.rotation += rToD*(this.leftMotor - this.rightMotor)/this.w;
-    var dX = -speed * Math.sin(this.rotation/rToD);
-    var dY = speed * Math.cos(this.rotation/rToD);
-    this.x += dX;
-    this.y += dY;
-}).
-onHit('Wall', function () {
+var Robot = Crafty.e("DOM, Color, Box2D")
+.color('rgb(0,0,255)')
+.attr({ x: 200, y: 100, w: 40, h: 40, type:"dynamic", friction:1})
+.bind('EnterFrame', function (data) {
+    var center = this.body.GetLocalCenter();
+    var robotAngle = this.body.GetAngle();
+    var leftMotor = new Box2D.Common.Math.b2Vec2(0,1);
+    var rightMotor =  new Box2D.Common.Math.b2Vec2(0,0.99999);
+    this.body.ApplyForce(
+        this.body.GetWorldVector(leftMotor),
+        this.body.GetWorldPoint(new Box2D.Common.Math.b2Vec2(0,0.6666)));
+    this.body.ApplyForce(
+        this.body.GetWorldVector(rightMotor),
+        this.body.GetWorldPoint(new Box2D.Common.Math.b2Vec2(40/30,0.6666)));
+})
+.onHit('Wall', function () {
     console.log("Collide");
 });
