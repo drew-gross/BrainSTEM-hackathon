@@ -1,52 +1,63 @@
 Crafty.init(600, 300);
 Crafty.background('rgb(127,127,127)');
 
-//Paddles
-Crafty.e("Paddle, 2D, DOM, Color, Multiway")
-	.color('rgb(255,0,0)')
-	.attr({ x: 20, y: 100, w: 10, h: 100 })
-	.multiway(4, { W: -90, S: 90 });
-Crafty.e("Paddle, 2D, DOM, Color, Multiway")
-	.color('rgb(0,255,0)')
-	.attr({ x: 580, y: 100, w: 10, h: 100 })
-	.multiway(4, { UP_ARROW: -90, DOWN_ARROW: 90 });
+var walls = [
+{x:0, y:0},
+{x:500, y:0},
+{x:500, y:300},
+{x:300, y:300},
+{x:300, y:200},
+{x:0, y:200}
+];
+
+var wall = function(p1,p2){
+    var attrs;
+    if(p1.x === p2.x){
+        var start = Math.min(p1.y, p2.y);
+        var len = Math.max(p1.y, p2.y) - start;
+        attrs = {
+            x: p1.x - 8,
+            y: start + 8,
+            w: 16,
+            h: len
+        };
+    } else {
+        var start = Math.min(p1.x, p2.x);
+        var len = Math.max(p1.x, p2.x) - start;
+        attrs = {
+            x: start + 8,
+            y: p1.y - 8,
+            w: len,
+            h: 16
+        };
+    }
+    Crafty.e("Wall, 2D, DOM, Color, Collision")
+        .color('rgb(0,0,0)')
+        .attr(attrs);
+};
+
+_.each(walls, function(p,i){
+    wall(p, walls[(i+1)%walls.length]);
+});
+
+var rToD = (360/(2*Math.PI));
 
 //Ball
-Crafty.e("2D, DOM, Color, Collision")
-	.color('rgb(0,0,255)')
-	.attr({ x: 300, y: 150, w: 10, h: 10,
-	    dX: Crafty.math.randomInt(2, 5),
-	    dY: Crafty.math.randomInt(2, 5)
-	})
-	.bind('EnterFrame', function () {
-	    //hit floor or roof
-	    if (this.y <= 0 || this.y >= 290)
-	        this.dY *= -1;
-
-	    if (this.x > 600) {
-	        this.x = 300;
-	        Crafty("LeftPoints").each(function () {
-	            this.text(++this.points + " Points")
-	        });
-	    }
-	    if (this.x < 10) {
-	        this.x = 300;
-	        Crafty("RightPoints").each(function () {
-	            this.text(++this.points + " Points")
-	        });
-	    }
-
-	    this.x += this.dX;
-	    this.y += this.dY;
-	})
-	.onHit('Paddle', function () {
-	    this.dX *= -1;
-	})
-
-//Score boards
-Crafty.e("LeftPoints, DOM, 2D, Text")
-	.attr({ x: 20, y: 20, w: 100, h: 20, points: 0 })
-	.text("0 Points");
-Crafty.e("RightPoints, DOM, 2D, Text")
-	.attr({ x: 515, y: 20, w: 100, h: 20, points: 0 })
-	.text("0 Points");
+Crafty.e("2D, DOM, Color, Collision").
+color('rgb(0,0,255)').
+attr({ x: 200, y: 100, w: 40, h: 40,
+    rotation: 45,
+    leftMotor: 2,
+    rightMotor: 2
+}).
+origin({x:20, y:20}).bind('EnterFrame', function () {
+    var speed = (this.leftMotor + this.rightMotor)/2;
+    this.rotation += rToD*(this.leftMotor - this.rightMotor)/this.w;
+    var dX = -speed * Math.sin(this.rotation/rToD);
+    var dY = speed * Math.cos(this.rotation/rToD);
+    this.x += dX;
+    this.y += dY;
+}).
+onHit('Wall', function () {
+    console.log("Collide");
+});
