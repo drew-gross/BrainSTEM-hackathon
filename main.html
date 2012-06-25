@@ -1,8 +1,19 @@
 <!DOCTYPE html>
 <head>	
 	<script type="text/javascript" src="crafty.js"></script>
+    <script type="text/javascript" src="editarea_0_8_2/edit_area/edit_area_full.js" ></script>
+    <script type="text/javascript">
+        editAreaLoader.init({
+            id: "usercode"		// textarea id
+	, syntax: "js"			// syntax to be uses for highgliting
+	, start_highlight: true		// to display with highlight mode on start-up
+        });
+    </script>
 </head>
 <body>
 	<script type="text/javascript" src="game.js"></script>
+    <p>Enter your code:</p>
+    <textarea id="usercode" cols="100" rows="50">
+    </textarea>
 </body>
 </html>
