@@ -4,11 +4,17 @@ $(function () {
 	    , syntax: "js"			// syntax to be uses for highgliting
 	    , start_highlight: true		// to display with highlight mode on start-up
     });
-    $("#run").click(function () {
-        var inputs = {lightsensor1: 100};
+    window.UserCode = {};
+    UserCode.code = "";
+    UserCode.run = function(inputs){
         var outputs = {};
-        eval(editAreaLoader.getValue("usercode"));
+        eval(UserCode.code);
         console.log(inputs);
         console.log(outputs);
+        return outputs;
+    };
+
+    $("#run").click(function () {
+        UserCode.code = editAreaLoader.getValue("usercode");
     });
 });
