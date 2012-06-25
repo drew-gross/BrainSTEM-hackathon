@@ -58,12 +58,12 @@ leftMotor: 0, rightMotor: 0})
         this.leftMotor = new Box2D.Common.Math.b2Vec2(0,outputs.motor1);
         this.rightMotor =  new Box2D.Common.Math.b2Vec2(0,outputs.motor2 - 1.0e-5);
     }
-    if(this.leftMotor.y > 0.001){
+    if(Math.abs(this.leftMotor.y) > 0.001){
         this.body.ApplyForce(
             this.body.GetWorldVector(this.leftMotor),
             this.body.GetWorldPoint(new Box2D.Common.Math.b2Vec2(0,0.6666)));
     }
-    if(this.rightMotor.y > 0.001){
+    if(Math.abs(this.rightMotor.y) > 0.001){
         this.body.ApplyForce(
             this.body.GetWorldVector(this.rightMotor),
             this.body.GetWorldPoint(new Box2D.Common.Math.b2Vec2(40/30,0.6666)));
