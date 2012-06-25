@@ -9,8 +9,16 @@
 			currentAngle = (rotatedStartAngle - ((x / granularity) * angle));
 			arcPoints[x+1] = [Math.cos(currentAngle) * radius , Math.sin(currentAngle) * radius];
 		}
-		//arcPoints[granularity+1] = [0,0];
 		return(arcPoints);
+	};
+	
+	var makeCircle = function(radius,granularity){
+		var circlePoints = [];
+		for (var x = 0, x < granularity, x++){
+			currentAngle = ((x / granularity) * 2 * Math.PI);
+			circlePoints[x] = [Math.cos(currentAngle) * radius , Math.sin(currentAngle) * radius];
+		}
+		return(circlePoints);
 	};
 	
 	var magnitude = function(point){
@@ -32,9 +40,7 @@
 			}
 		}	
 
-		var sensorShapePoints = makeArc(3,Math.PI,30);
-		sensorShapePoints = _.map(sensorShapePoints,function(inputPoint){return(new b2Vec2(inputPoint[0],inputPoint[1]))};);
-		this.sensorShape = Box2D.Collision.Shapes.b2PolygonShape.AsArray(sensorShapePoints);
+		this.points = makeArc(100,Math.PI,30);
 	};
 	LightSensor.states = ["Nothing", "Black", "White"];
 	
@@ -51,9 +57,7 @@
 			}
 		}	
 
-		var sensorShapePoints = makeArc(0.2,Math.PI,5);
-		sensorShapePoints = _.map(sensorShapePoints,function(inputPoint){return(new b2Vec2(inputPoint[0],inputPoint[1]))};);
-		this.sensorShape = Box2D.Collision.Shapes.b2PolygonShape.AsArray(sensorShapePoints);
+		this.points = makeArc(3,Math.PI,5);
 	};
 	TouchSensor.states = ["Off", "On"];
 	
@@ -77,6 +81,6 @@
 			//you'd expect to hear from the speaker
 			this.state = 1/(this.state * this.state);
 		}	
-		this.sensorShape = Box2D.Collision.Shapes.b2CircleShape.b2CircleShape(10);
+		this.points = makeCircle(500,50);
 	};
 })();
