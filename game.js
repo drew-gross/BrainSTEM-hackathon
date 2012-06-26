@@ -6,7 +6,7 @@ Crafty.DrawManager.draw = Crafty.DrawManager.drawAll;
 Crafty.Box2D.init();
 Crafty.background('rgb(255,255,255)');
 
-var level = window.level = window.Demo4;
+var level = window.level = window.Demo3;
 
 _.each(level.walls, function(pointlist,i){
 	_.each(pointlist, function(p,i){
