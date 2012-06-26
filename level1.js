@@ -6,8 +6,8 @@
 	[[0,3],[2,3],[2,1],[5,1],[5,3]]
 	];
 	
-	_.map(level.walls,function(eachList){
-		_.map(eachList, function(eachPoint){
+	_.each(level.walls,function(eachList){
+		_.each(eachList, function(eachPoint){
 			eachPoint[0] *= 80;
 			eachPoint[1] *= 80;
 			});
