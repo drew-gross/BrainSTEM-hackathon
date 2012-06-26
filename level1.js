@@ -19,4 +19,5 @@
 	level.actuators = [new Actuators.LeftMotor(), new Actuators.Laser(), new Actuators.RightMotor()];
 	level.startPosition = { x: 100, y: 100 };
     level.endPosition = {x: 100, y: 200, w: 50, h: 50};
+    level.instructions = "<p>asdgfasdfgadefs gaewrg qawegfa wf </p>"
 })();

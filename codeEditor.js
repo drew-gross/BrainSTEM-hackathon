@@ -101,6 +101,7 @@ $(function () {
     });
 
     //level management
+    $("#instructions").html(window.level.instructions);
     $("body").on("click", "#next-level", function () {
         alert("nect!");
     });

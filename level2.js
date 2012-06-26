@@ -40,6 +40,6 @@
 	level.sensors = [new Sensors.ProximitySensor(), new Sensors.ProximitySensor()];
 	level.actuators = [new Actuators.LeftMotor(), new Actuators.RightMotor()];
     level.startPosition = {x:720, y:30};
-
     level.endPosition = { x: 700, y: 200, w: 50, h: 50 };
+    level.instructions = "#level2instructions"
 })();

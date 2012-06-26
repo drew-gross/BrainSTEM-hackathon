@@ -96,7 +96,7 @@ img.robot-part{
 	vertical-align: center;
 }
 
-#victory-screen 
+#victory-screen, #instructions
 {
     text-align:center;
 }
