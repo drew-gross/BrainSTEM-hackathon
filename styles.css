@@ -110,3 +110,11 @@ img.robot-part{
     width:800px;
     text-indent:50px;
 }
+code{
+     display: block;
+     padding: 0.5em 1em;
+     color: #000;
+     line-height: 1.25;
+     background: transparent;
+     border: 1px solid #bebab0;
+}
