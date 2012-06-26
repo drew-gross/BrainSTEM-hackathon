@@ -1,16 +1,17 @@
 $(function(){
 var PPM = 30; // Pixels per meter.
-Crafty.init(600, 300);
+Crafty.init(500, 500);
 Crafty.Box2D.init();
-Crafty.background('rgb(127,127,127)');
+Crafty.background('rgb(255,255,255)');
 
 var walls = [
+{x:250, y:500},
+{x:0, y:500},
 {x:0, y:0},
 {x:500, y:0},
-{x:500, y:300},
-{x:300, y:300},
-{x:300, y:200},
-{x:0, y:200}
+{x:500, y:500},
+{x:250, y:500},
+{x:250, y:150}
 ];
 
 var wall = function(p1,p2){
@@ -50,9 +51,9 @@ var rToD = (360/(2*Math.PI));
 window.Game = {}
 Game.running = false;
 
-var Robot = function(sensors){
+var Robot = function(sensors, motors){
     var theRobot =  Crafty.e("Canvas, Box2D, DrawPolygon")
-        .attr({x: 200, y: 100, w: 40, h: 40, type:"dynamic",
+        .attr({x: 375, y: 425, w: 40, h: 40, type:"dynamic",
             leftMotor: 0, rightMotor: 0,
             draw_polygons:[[[0,0],[40,0],[40,40],[0,40]]]})
         .bind('EnterFrame', function (data) {

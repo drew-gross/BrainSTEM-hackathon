@@ -27,17 +27,27 @@ img.logo{
 	margin-top: 60px;
 }
 
+.first_row{
+	margin-bottom: 20px;
+	/*width: 1000px;*/
+	
+}
+
 .map{
 	margin-left: 20px;
 	float: left;
 }
-.first_row{
-	margin-bottom: 20px;
-	width: 1000px;
-}
+
 .parts_list{
-	/*float: left;*/
-	/*margin-left: 300px;*/
+	float: right;
+}
+
+.clear{
+	clear: both;
+}
+
+.butthorn{
+	float: top;
 }
 
 .grid{
