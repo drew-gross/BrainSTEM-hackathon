@@ -30,6 +30,6 @@
 	[[9,10],[9,9]]
 	];
 	
-	this.sensors = [new ProximitySensor(), new ProximitySensor()];
+	this.sensors = [new Sensors.ProximitySensor(), new Sensors.ProximitySensor()];
 	
 })();
