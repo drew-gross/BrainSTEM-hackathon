@@ -23,6 +23,20 @@ var rToD = (360/(2*Math.PI));
 window.Game = {}
 Game.running = false;
 
+var makeAdjustments = function(body, engines){
+    var factor = body.GetMass()/engines.length;
+    _.each(engines, function(engine){
+        var worldPos = body.GetWorldPoint(engine.position);
+        var worldTarget = body.GetWorldVector(engine.target);
+        var worldCurrent = body.GetLinearVelocityFromWorldPoint(worldPos);
+        var impulse = new Box2D.Common.Math.b2Vec2();
+        impulse.SetV(worldTarget);
+        impulse.Subtract(worldCurrent);
+        impulse.Multiply(factor);
+        body.ApplyImpulse(impulse, worldPos);
+    });
+};
+
 var Robot = function(sensors, motors){
     var theRobot =  Crafty.e("Canvas, Box2D, DrawPolygon")
         .attr({x: 375, y: 425, w: 40, h: 40, type:"dynamic",
@@ -55,23 +69,17 @@ var Robot = function(sensors, motors){
                     sensor.sensor.sensor.state;
                 });
                 var outputs = UserCode.run(inputs);
-                this.leftMotor = new Box2D.Common.Math.b2Vec2(0,outputs.motor1);
-                this.rightMotor =  new Box2D.Common.Math.b2Vec2(0,
-                    outputs.motor2 - 1.0e-5);
+                var motors = [
+                {position: new Box2D.Common.Math.b2Vec2(0,this.h/2/PPM),
+                    target: new Box2D.Common.Math.b2Vec2(0,outputs.motor1)},
+                {position: new Box2D.Common.Math.b2Vec2(
+                                            this.w/2/PPM, this.h/2/PPM),
+                    target: new Box2D.Common.Math.b2Vec2(0,
+                                                outputs.motor2 - 1.0e-5)}
+                ];
+                makeAdjustments(this.body, motors);
             }
-            if(Math.abs(this.leftMotor.y) > 0.001){
-                this.body.ApplyForce(
-                    this.body.GetWorldVector(this.leftMotor),
-                    this.body.GetWorldPoint(
-                        new Box2D.Common.Math.b2Vec2(0,this.h/2/PPM)));
-            }
-            if(Math.abs(this.rightMotor.y) > 0.001){
-                this.body.ApplyForce(
-                    this.body.GetWorldVector(this.rightMotor),
-                    this.body.GetWorldPoint(
-                        new Box2D.Common.Math.b2Vec2(this.w/PPM,this.h/2/PPM)));
-            }
-        })
+        });
     var wGridToPixel = theRobot.w/4;
     var hGridToPixel = theRobot.h/4;
     theRobot.sensors = _.collect(sensors, function(s){
