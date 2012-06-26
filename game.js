@@ -1,6 +1,5 @@
 $(function(){
 var PPM = 30; // Pixels per meter.
-var level = window.level = window.Demo3;
 
 Crafty.init(700, 480);
 Crafty.DrawManager.draw = Crafty.DrawManager.drawAll;
@@ -8,8 +7,8 @@ Crafty.Box2D.init();
 Crafty.background('rgb(255,255,255)');
 
 window.Game = {}
-var level;
 var goal;
+var level;
 
 var loadLevel = Game.loadLevel = function(theLevel){
     window.level = Game.level = level = theLevel;
