@@ -93,6 +93,22 @@
 	};
 	LightSensor.states = ["Nothing", "Black", "White"];
 	
+	var gyroNameCounter = 0;
+	var GyroSensor = Sensors.GyroSensor = function(){
+		this.imageSrc = "img/lightsensor.bmp";
+		this.name = "GyroSensor" + (gyroNameCounter++);
+		this.state = 0;
+		this.update = function(robot){
+            this.state = robot.rotation
+		}	
+        this.attach = function(robot, position){
+            attachHitSensor(robot, this, position);
+        }
+        this.points = makeArc(30, Math.PI / 3, 30);
+        this.helptext = this.name + ". Use this sensor by reading inputs." + this.name + ", the value will be 'Nothing', 'Black', or 'White'";
+	};
+	LightSensor.states = ["Nothing", "Black", "White"];
+	
 	var proxNameCounter = 0;
 	var ProximitySensor = Sensors.ProximitySensor = function(){
 		this.imageSrc = "img/touch_sensor.png";
@@ -103,15 +119,20 @@
 			//Make sure that we're only looking at objects that are coloured panels.
 			var filteredList = _.filter(touchList,function(x){return(x[0].name === "Wall")});
 	
-			if(filteredList){
+			if(filteredList.length){
 				this.state = "On";
+			}
+			else
+			{
+				this.state = "Off";
 			}
 		}
 
         this.attach = function(robot, position){
             attachHitSensor(robot, this, position);
         };
-        this.points = makeArc(3, Math.PI, 5);
+		//I know, I know, magic numbers are bad.
+        this.points = makeArc(10, Math.PI - 0.0001, 5);
         this.helptext = this.name + ". Use this sensor by reading inputs." + this.name + ", the value will be 'On' or 'Off'";
 	};
 	ProximitySensor.states = ["Off", "On"];

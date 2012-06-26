@@ -31,10 +31,10 @@ $(function () {
         }
     };
 	var viewModel = {
-		sensors: _.collect(window.Level1.sensors, function(sensor){
+		sensors: _.collect(window.level.sensors, function(sensor){
             return {object:sensor, position:ko.observable(null)};
         }),
-        actuators: _.collect(window.Level1.actuators, function (actuator) {
+        actuators: _.collect(window.level.actuators, function (actuator) {
             return {object:actuator, position: ko.observable(null) };
         })
 	};
@@ -61,13 +61,14 @@ $(function () {
     UserCode.code = "";
     UserCode.inputs = [];
     UserCode.outputs = [];
-    UserCode.run = function(inputs){
+    UserCode.run = function(inputs, memory){
         try {
             var outputs = {};
             eval(UserCode.code);
             return outputs;
         } catch(err){
-			confirm(err);
+	    confirm(err);
+            Game.running = false;
             // TODO: Display the error to the user.
             return {};
         }
