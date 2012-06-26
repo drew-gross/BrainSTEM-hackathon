@@ -75,9 +75,12 @@ var Robot = function(inputs, outputs){
                 });
                 var outputs = UserCode.run(inputs);
                 _.each(outputs,function(value, key){
-                    _.find(self.outputs, function(out){
+                    var out = _.find(self.outputs, function(out){
                         return out.actuator.name === key;
-                    }).actuator.state = value;
+                    });
+                    if(out){
+                        out.actuator.state = value;
+                    }
                 });
                 var motors = [];
                 _.each(self.outputs, function (out) {
