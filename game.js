@@ -1,5 +1,4 @@
 $(function(){
-var PPM = 30; // Pixels per meter.
 Crafty.init(500, 500);
 Crafty.DrawManager.draw = Crafty.DrawManager.drawAll;
 Crafty.Box2D.init();
@@ -22,6 +21,7 @@ _.each(walls, function(p,i){
 var rToD = (360/(2*Math.PI));
 
 window.Game = {}
+var PPM = Game.PPM = 30; // Pixels per meter.
 Game.running = false;
 
 var makeAdjustments = function(body, engines){
