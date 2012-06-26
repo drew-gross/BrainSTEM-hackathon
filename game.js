@@ -63,13 +63,13 @@ var Robot = function(sensors){
                 this.rightMotor =  new Box2D.Common.Math.b2Vec2(0,
                     outputs.motor2 - 1.0e-5);
             }
-            if(this.leftMotor.y > 0.001){
+            if(Math.abs(this.leftMotor.y) > 0.001){
                 this.body.ApplyForce(
                     this.body.GetWorldVector(this.leftMotor),
                     this.body.GetWorldPoint(
                         new Box2D.Common.Math.b2Vec2(0,this.h/2/PPM)));
             }
-            if(this.rightMotor.y > 0.001){
+            if(Math.abs(this.rightMotor.y) > 0.001){
                 this.body.ApplyForce(
                     this.body.GetWorldVector(this.rightMotor),
                     this.body.GetWorldPoint(
