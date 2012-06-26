@@ -89,7 +89,7 @@
                     attachHitSensor(robot, this, position);
                 }
         this.points = makeArc(30, Math.PI / 3, 30);
-        this.helptext = this.name + ". Use this sensor by reading inputs." + this.name + ", the value will be 'Nothing', 'Black', or 'White'";
+        this.helptext = this.name + ". Use this sensor by reading inputs." + this.name + ", the value will be 'Nothing', 'Black', 'White', or the color of the panel.";
 	};
 	LightSensor.states = ["Nothing", "Black", "White"];
 	

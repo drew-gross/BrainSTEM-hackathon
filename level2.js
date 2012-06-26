@@ -41,5 +41,5 @@
 	level.actuators = [new Actuators.LeftMotor(), new Actuators.RightMotor()];
     level.startPosition = {x:720, y:30};
 
-    level.endPosition = { x: 400, y: 400, width: 50, height: 50 };
+    level.endPosition = { x: 400, y: 400, w: 50, h: 50 };
 })();
