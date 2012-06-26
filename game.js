@@ -26,7 +26,7 @@ Game.running = false;
 
 var makeAdjustments = function(body, engines){
     var factor = body.GetMass()/engines.length/2;
-    _.each(_.filter(_.collect(engines, function(engine){
+    _.each(engines, function(engine){
         var worldPos = body.GetWorldPoint(engine.position);
         var worldTarget = body.GetWorldVector(engine.target);
         var worldCurrent = body.GetLinearVelocityFromWorldPoint(worldPos);
@@ -34,11 +34,9 @@ var makeAdjustments = function(body, engines){
         impulse.SetV(worldTarget);
         impulse.Subtract(worldCurrent);
         impulse.Multiply(factor);
-        return {impulse:impulse, worldPos:worldPos};
-    }), function(obj){
-        return obj.impulse.LengthSquared() > 1e-5;
-    }), function(obj){
-        body.ApplyImpulse(obj.impulse, obj.worldPos);
+        if(impulse.LengthSquared() > 1e-5){
+            body.ApplyImpulse(impulse, worldPos);
+        }
     });
 };
 
