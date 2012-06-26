@@ -40,6 +40,7 @@ img.logo{
 
 .parts_list{
 	float: right;
+	padding-right: 150px;
 }
 
 .clear{
@@ -80,8 +81,8 @@ a:visited {
 }
 
 .robot-cell, .tool-box-cell{
-	width:60px;
-	height:60px;
+	width:70px;
+	height:70px;
 	border-style:solid;
 	border-width:1px;
 	border-color:black;
