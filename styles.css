@@ -100,7 +100,13 @@ img.robot-part{
 	vertical-align: center;
 }
 
-#victory-screen, #instructions
+#victory-screen
 {
     text-align:center;
+}
+#instructions
+{
+    margin:auto;
+    width:800px;
+    text-indent:50px;
 }
