@@ -111,7 +111,7 @@
 	
 	var proxNameCounter = 0;
 	var ProximitySensor = Sensors.ProximitySensor = function(){
-		this.imageSrc = "img/touch_sensor.png";
+		this.imageSrc = "PI_hackathon/proximity_sensor.png";
 		this.name = "ProximitySensor" + (proxNameCounter++);
 		this.state = "Off";
 		this.update = function(robot){
