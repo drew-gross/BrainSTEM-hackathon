@@ -29,10 +29,10 @@
                 <div class="parts_list">
                     <table id="robot-parts">
                         <tr data-bind="foreach: sensors">
-							<td class="tool-box-cell"><img data-bind="attr: {id: name, src: imageSrc}, data: {sensor: $data}" class="robot-part input" /></td>
+							<td class="tool-box-cell"><img data-bind="attr: {id: object.name, src: object.imageSrc}, data: {object: $data}" class="robot-part input" /></td>
                         </tr>
 						<tr data-bind="foreach: actuators">
-							<td class="tool-box-cell"><img data-bind="attr: {id: name, src: imageSrc}, data: {actuator: $data}" class="robot-part output" /></td>
+							<td class="tool-box-cell"><img data-bind="attr: {id: object.name, src: object.imageSrc}, data: {object: $data}" class="robot-part output" /></td>
                         </tr>
                     </table>
                     <table class="grid" id="robot-design">
@@ -61,6 +61,12 @@
                             <td id="robot-15" class="robot-cell"></td>
                         </tr>
                     </table>
+                    <div id="help">
+                        <p>These sensors and actuators are available:</p>
+                        <ul data-bind="foreach: selectedObjects" >
+                        	<li data-bind="text: object.helptext"></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>

@@ -41,9 +41,10 @@
 			} else {
                 this.state = "Nothing";
             }
-		}	
+		}
 
-		this.points = makeArc(50,Math.PI/2,30);
+        this.points = makeArc(50, Math.PI / 2, 30);
+        this.helptext = "light";
 	};
 	LightSensor.states = ["Nothing", "Black", "White"];
 	
@@ -59,9 +60,10 @@
 			if(filteredList){
 				this.state = "On";
 			}
-		}	
+		}
 
-		this.points = makeArc(3,Math.PI,5);
+        this.points = makeArc(3, Math.PI, 5);
+        this.helptext = "prox";
 	};
 	ProximitySensor.states = ["Off", "On"];
 	
@@ -85,7 +87,8 @@
 			//take the inverse square, which gives you the sound level that
 			//you'd expect to hear from the speaker
 			this.state = 1/(this.state * this.state);
-		}	
-		this.points = makeCircle(500,50);
+		}
+        this.points = makeCircle(500, 50);
+        this.helptext = "sound";
 	};
 })();

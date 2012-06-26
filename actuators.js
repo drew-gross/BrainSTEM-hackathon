@@ -7,6 +7,7 @@
         this.name = "Motor" + (motorNameCounter++);
         this.type = "Motor";
         this.state = 0;
+        this.helptext = "asdsada";
     };
 
     var laserNameCounter = 0;
@@ -15,5 +16,6 @@
         this.name = "Laser" + (laserNameCounter++);
         this.state = 0;
         this.type = "Laser";
+        this.helptext = "pew pew pew";
     };
 })();

@@ -1,9 +1,9 @@
 $(function () {
 
     //helper functions
-    var getPosition = function (htmlElem) {
+    var getPosition = function (id) {
         var indexRegex = /robot-(\d+)/g;
-        var matches = indexRegex.exec($(htmlElem).data("location"));
+        var matches = indexRegex.exec(id);
         var index = matches[1];
         return {
                    x:index % 4,
@@ -11,34 +11,6 @@ $(function () {
                }
     };
 
-    var isOnRobot = function () {
-        var partLocation = $(this).data("location");
-        if (typeof(partLocation) !== "string") {
-            return false;
-        }
-        return (partLocation.search("robot") === 0);
-    }
-
-    var inputs = function() {
-        elems = $(".input").filter(isOnRobot);
-        return _.map(elems,function (elem, key) {
-            return {
-                        sensor:$(elem).data("sensor"),
-                        position: getPosition(elem)
-                   };
-                   
-        });
-    };
-
-    var outputs = function() {
-        elems = $(".output").filter(isOnRobot);
-        return _.map(elems, function (elem, key) {
-            return {
-                        actuator:$(elem).data("actuator"),
-                        position:getPosition(elem)
-                   }
-        });
-    };
     //set up the code editor
     editAreaLoader.init({
         id: "usercode"		// textarea id
@@ -58,11 +30,29 @@ $(function () {
             });
         }
     };
-	var viewModel = function(){
-		this.sensors = window.Level1.sensors;
-		this.actuators = window.Level1.actuators;
+	var viewModel = {
+		sensors: _.collect(window.Level1.sensors, function(sensor){
+            return {object:sensor, position:ko.observable(null)};
+        }),
+        actuators: _.collect(window.Level1.actuators, function (actuator) {
+            return {object:actuator, position: ko.observable(null) };
+        })
 	};
-	ko.applyBindings(new viewModel());
+    viewModel.selectedObjects = ko.computed(function(){
+        return _.filter(_.collect(viewModel.sensors.concat(viewModel.actuators), function(object){
+            return {object: object.object, position: object.position()};
+        }), function(object){
+            return (object.position !== null);
+        });
+    });
+    viewModel.selectedActuators = ko.computed(function () {
+        return _.filter(_.collect(viewModel.objects, function (object) {
+            return { object: object.object, position: object.position() };
+        }), function (object) {
+            return (object.position !== null);
+        });
+    });
+	ko.applyBindings(viewModel);
 	
     //build the things used by the engine and supplied by the user
     window.UserCode = {};
@@ -82,7 +72,7 @@ $(function () {
 
     $("#run").click(function () {
         UserCode.code = editAreaLoader.getValue("usercode");
-        UserCode.inputs = inputs();
+        UserCode.inputs = viewModel.sensors;
         UserCode.outputs = outputs();
         Game.running = true;
         Game.resetRobot();
@@ -96,13 +86,13 @@ $(function () {
     $(".robot-cell").droppable({ 
         accept: ".robot-part",
         drop: function (event, ui) {
-            ui.draggable.data("location", this.id);
+            ui.draggable.data("object").position(getPosition(this.id));
         }
     });
     $(".tool-box-cell").droppable({ 
         accept: ".robot-part",
         drop: function (event, ui) {
-            ui.draggable.removeData("location");
+            ui.draggable.data("object").position(null);
         }
     });
 });
