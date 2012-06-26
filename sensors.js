@@ -5,7 +5,7 @@
 	var makeArc = function(radius,angle,granularity){
 		rotatedStartAngle = Math.PI/2 + angle/2;
 		var arcPoints = [[0,0]];
-		for (var x = 0; x < granularity; x++){
+		for (var x = 0; x <= granularity; x++){
 			currentAngle = (rotatedStartAngle - ((x / granularity) * angle));
 			arcPoints[x+1] = [Math.cos(currentAngle) * radius , Math.sin(currentAngle) * radius];
 		}
@@ -43,7 +43,7 @@
             }
 		}	
 
-		this.points = makeArc(100,Math.PI,30);
+		this.points = makeArc(50,Math.PI/2,30);
 	};
 	LightSensor.states = ["Nothing", "Black", "White"];
 	
