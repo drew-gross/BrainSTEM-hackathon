@@ -34,10 +34,14 @@ img.logo{
 	
 }
 
-.map{
+#cr-stage{
+	width: 700px;
+}
+
+#cr-stage-container
+{
 	margin-left: 50px;
 	float: left;
-	width: 700px;
 }
 
 .parts_list{
