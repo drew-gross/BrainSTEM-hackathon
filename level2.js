@@ -29,4 +29,7 @@
 	[[10,8],[9,8]],
 	[[9,10],[9,9]]
 	];
+	
+	this.sensors = [new ProximitySensor(), new ProximitySensor()];
+	
 })();

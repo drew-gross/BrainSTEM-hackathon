@@ -44,9 +44,9 @@
 	};
 	LightSensor.states = ["Nothing", "Black", "White"];
 	
-	var touchNameCounter = 0;
-	var TouchSensor = Sensors.TouchSensor = function(){
-		this.name = "TouchSensor" + (touchNameCounter++);
+	var proxNameCounter = 0;
+	var ProximitySensor = Sensors.ProximitySensor = function(){
+		this.name = "ProximitySensor" + (proxNameCounter++);
 		this.state = "Off";
 		this.update = function(touchList){
 			//Make sure that we're only looking at objects that are coloured panels.
@@ -59,7 +59,7 @@
 
 		this.points = makeArc(3,Math.PI,5);
 	};
-	TouchSensor.states = ["Off", "On"];
+	ProximitySensor.states = ["Off", "On"];
 	
 	var soundNameCounter = 0;
 	var SoundSensor = Sensors.SoundSensor = function(){
