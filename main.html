@@ -12,6 +12,8 @@
 	
         <script type="text/javascript" src="sensors.js"></script>
 		<script type="text/javascript" src="game.js"></script>
+		<script type="text/javascript" src="level1.js"></script>
+		<script type="text/javascript" src="level2.js"></script>
 	<link rel="stylesheet" type="text/css" href="styles.css" />
 
 </head>
@@ -25,7 +27,10 @@
                 <div class="parts_list">
                     <table id="robot-parts">
                         <tr data-bind="foreach: sensors">
-							<td class="tool-box-cell"><img id="text: name" class="robot-part input" src="text: imageSrc" /></td>
+							<td class="tool-box-cell"><img data-bind="attr: {id: name, src: imageSrc}" class="robot-part input" /></td>
+                        </tr>
+						<tr data-bind="foreach: actuators">
+							<td class="tool-box-cell"><img data-bind="attr: {id: name, src: imageSrc}" class="robot-part output" /></td>
                         </tr>
                     </table>
                     <table class="grid" id="robot-design">

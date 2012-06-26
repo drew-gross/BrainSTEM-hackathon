@@ -1,4 +1,5 @@
 $(function () {
+
     //helper functions
     var getPosition = function (htmlElem) {
         var indexRegex = /robot-(\d+)/g;
@@ -44,6 +45,13 @@ $(function () {
 	    , syntax: "js"			// syntax to be uses for highgliting
 	    , start_highlight: true		// to display with highlight mode on start-up
     });
+	
+	var viewModel = function(){
+		this.sensors = window.Level1.sensors;
+		this.actuators = [];
+	};
+	ko.applyBindings(new viewModel());
+	
     window.UserCode = {};
     UserCode.code = "";
     UserCode.inputs = [];
@@ -77,9 +85,4 @@ $(function () {
             ui.draggable.removeData("location");
         }
     });
-	var viewModel = function(){
-		this.sensors = [new TouchSensor(), new TouchSensor(), new LightSensor()];
-		this.actuators = [];
-	};
-	ko.applyBindings(new viewModel());
 });
