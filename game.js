@@ -14,36 +14,8 @@ var walls = [
 {x:250, y:150}
 ];
 
-var wall = function(p1,p2){
-    var attrs;
-    if(p1.x === p2.x){
-        var start = Math.min(p1.y, p2.y);
-        var len = Math.max(p1.y, p2.y) - start;
-        attrs = {
-            x: p1.x - 8,
-            y: start - 8,
-            w: 16,
-            h: len + 16,
-            restitution: 0
-        };
-    } else {
-        var start = Math.min(p1.x, p2.x);
-        var len = Math.max(p1.x, p2.x) - start;
-        attrs = {
-            x: start - 8,
-            y: p1.y - 8,
-            w: len + 16,
-            h: 16,
-            restitution: 0
-        };
-    }
-    Crafty.e("Wall, Canvas, Color, Box2D")
-        .color('rgb(0,0,0)')
-        .attr(attrs);
-};
-
 _.each(walls, function(p,i){
-    wall(p, walls[(i+1)%walls.length]);
+    Component.Wall(p, walls[(i+1)%walls.length]);
 });
 
 var rToD = (360/(2*Math.PI));
