@@ -27,7 +27,7 @@
 	level.sensors = [new Sensors.ProximitySensor(), new Sensors.ProximitySensor()];
 	level.actuators = [new Actuators.LeftMotor(), new Actuators.RightMotor()];
     level.startPosition = {x:16, y:16};
-    level.endPosition = { x: 8*80 - 20, y: 3*80 + 40, w: 52, h: 52 };
+    level.endPosition = { x: 8*80 - 20, y: 3*80 + 42, w: 50, h: 48 };
     level.instructions = 
 'Welcome to Robuzzle. Robuzzle is a game where you design and program a '+
 'robot to solve puzzles and get to a goal. You can add parts to your '+
