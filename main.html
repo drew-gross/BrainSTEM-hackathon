@@ -8,6 +8,7 @@
 	<script type="text/javascript" src="craftybox.js"></script>
     <script type="text/javascript" src="editarea_0_8_2/edit_area/edit_area_full.js" ></script>
 	<script type="text/javascript" src="underscore.js"></script>
+	<script type="text/javascript" src="knockout-2.1.0.debug.js"></script>
 	
 	<link rel="stylesheet" type="text/css" href="styles.css" />
 
@@ -22,11 +23,8 @@
                 <div class="map" id="cr-stage"></div>
                 <div class="parts_list">
                     <table id="robot-parts">
-                        <tr>
-                            <td id="tool-box-0" class="tool-box-cell"><img id="motor1" class="robot-part output" src="img/motor.bmp" /></td>
-                            <td id="tool-box-1" class="tool-box-cell"><img id="motor2" class="robot-part output" src="img/motor.bmp" /></td>
-                            <td id="tool-box-2" class="tool-box-cell"><img id="sound-sensor1" class="robot-part input" src="img/soundsensor.bmp" /></td>
-                            <td id="tool-box-3" class="tool-box-cell"><img id="sound-sensor2" class="robot-part input" src="img/soundsensor.bmp" /></td>
+                        <tr data-bind="foreach: sensors">
+							<td class="tool-box-cell"><img id="text: name" class="robot-part input" src="text: imageSrc" /></td>
                         </tr>
                     </table>
                     <table class="grid" id="robot-design">

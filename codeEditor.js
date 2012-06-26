@@ -77,4 +77,9 @@ $(function () {
             ui.draggable.removeData("location");
         }
     });
+	var viewModel = function(){
+		this.sensors = [new TouchSensor(), new TouchSensor(), new LightSensor()];
+		this.actuators = [];
+	};
+	ko.applyBindings(new viewModel());
 });

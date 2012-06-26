@@ -27,6 +27,7 @@
 	
 	var lightNameCounter = 0;
 	var LightSensor = Sensors.LightSensor = function(){
+		this.imageSrc = "img/soundsensor.bmp";
 		this.name = "LightSensor" + (lightNameCounter++);
 		this.state = "Nothing";
 		this.update = function(touchList){
@@ -46,6 +47,7 @@
 	
 	var proxNameCounter = 0;
 	var ProximitySensor = Sensors.ProximitySensor = function(){
+		this.imageSrc = "img/soundsensor.bmp";
 		this.name = "ProximitySensor" + (proxNameCounter++);
 		this.state = "Off";
 		this.update = function(touchList){
@@ -63,6 +65,7 @@
 	
 	var soundNameCounter = 0;
 	var SoundSensor = Sensors.SoundSensor = function(){
+		this.imageSrc = "img/soundsensor.bmp";
 		this.name = "SoundSensor" + (soundNameCounter++);
 		this.state = 1000;
 		this.update = function(touchList){
