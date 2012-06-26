@@ -119,7 +119,9 @@ var Robot = function(sensors, motors){
 
 Game.resetRobot = function() {
     robot.destroy();
-    robot = Robot(UserCode.inputs, UserCode.outputs);
+    _.delay(function(){
+        robot = Robot(UserCode.inputs, UserCode.outputs);
+    }, 50);
 };
 
 var robot = Robot([]);
