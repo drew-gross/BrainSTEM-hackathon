@@ -44,7 +44,7 @@
 		}
 
         this.points = makeArc(50, Math.PI / 2, 30);
-        this.helptext = "light";
+        this.helptext = this.name + ". Use this sensor by reading inputs." + this.name + ", the value will be 'Nothing', 'Black', or 'White'";
 	};
 	LightSensor.states = ["Nothing", "Black", "White"];
 	
@@ -63,7 +63,7 @@
 		}
 
         this.points = makeArc(3, Math.PI, 5);
-        this.helptext = "prox";
+        this.helptext = this.name + ". Use this sensor by reading inputs." + this.name + ", the value will be 'On' or 'Off'";
 	};
 	ProximitySensor.states = ["Off", "On"];
 	
@@ -82,6 +82,7 @@
 		}	
 
 		this.points = makeArc(3,Math.PI,5);
+        this.helptext = this.name + ". Use this sensor by reading inputs." + this.name + ", the value will be 'On' or 'Off'";
 	};
 	TouchSensor.states = ["Off", "On"];
 	
@@ -107,6 +108,6 @@
 			this.state = 1/(this.state * this.state);
 		}
         this.points = makeCircle(500, 50);
-        this.helptext = "sound";
+        this.helptext = this.name + ". Use this sensor by reading inputs." + this.name + ", the value will be a number";
 	};
 })();
