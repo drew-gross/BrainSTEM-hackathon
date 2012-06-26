@@ -125,10 +125,15 @@ code{
     margin-right:auto;
     margin-top:0.25cm;
     margin-bottom:0.25cm;
-    text-align:center;
     padding:20px;
     background-color:#CFCFCF;
     border-radius:10px;
+}
+.gray_box h3
+{
+    text-align:center;
+    padding-bottom:5px;
+    padding-top:0px !important;
 }
 
 .gray_box > * 
