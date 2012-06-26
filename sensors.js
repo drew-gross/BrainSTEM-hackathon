@@ -37,10 +37,10 @@
 			if(filteredList.length){
 				//if multiple are touching, just set the colour to the first one for
 				//the sake of ease.
-				this.state = filteredList[0].sensor_color;
+				this.state = filteredList[0][0].sensor_color;
 			} else {
-                            this.state = "Nothing";
-                        }
+                this.state = "Nothing";
+            }
 		}	
 
 		this.points = makeArc(100,Math.PI,30);
