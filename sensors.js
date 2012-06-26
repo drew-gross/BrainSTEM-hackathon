@@ -67,6 +67,24 @@
 	};
 	ProximitySensor.states = ["Off", "On"];
 	
+	var touchNameCounter = 0;
+	var TouchSensor = Sensors.TouchSensor = function(){
+		this.imageSrc = "img/touch_sensor.png";
+		this.name = "TouchSensor" + (touchNameCounter++);
+		this.state = "Off";
+		this.update = function(touchList){
+			//Make sure that we're only looking at objects that are coloured panels.
+			var filteredList = _.filter(touchList,function(x){return(x[0].name === "Wall")});
+	
+			if(filteredList){
+				this.state = "On";
+			}
+		}	
+
+		this.points = makeArc(3,Math.PI,5);
+	};
+	TouchSensor.states = ["Off", "On"];
+	
 	var soundNameCounter = 0;
 	var SoundSensor = Sensors.SoundSensor = function(){
 		this.imageSrc = "img/soundsensor.bmp";

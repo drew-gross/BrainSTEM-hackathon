@@ -26,7 +26,7 @@ Game.running = false;
 
 var makeAdjustments = function(body, engines){
     var factor = body.GetMass()/engines.length/2;
-    _.each(_.filter(_.collect(engines, function(engine){
+    _.each(engines, function(engine){
         var worldPos = body.GetWorldPoint(engine.position);
         var worldTarget = body.GetWorldVector(engine.target);
         var worldCurrent = body.GetLinearVelocityFromWorldPoint(worldPos);
@@ -34,11 +34,9 @@ var makeAdjustments = function(body, engines){
         impulse.SetV(worldTarget);
         impulse.Subtract(worldCurrent);
         impulse.Multiply(factor);
-        return {impulse:impulse, worldPos:worldPos};
-    }), function(obj){
-        return obj.impulse.LengthSquared() > 1e-5;
-    }), function(obj){
-        body.ApplyImpulse(obj.impulse, obj.worldPos);
+        if(impulse.LengthSquared() > 1e-5){
+            body.ApplyImpulse(impulse, worldPos);
+        }
     });
 };
 
@@ -99,10 +97,10 @@ var Robot = function(inputs, outputs){
                         out.actuator.state = value;
                     }
                 });
-                var motors = [];
+                var LeftMotors = [];
                 _.each(self.outputs, function (out) {
-                    if(out.actuator.type === 'Motor'){
-                        motors.push(
+                    if(out.actuator.type === 'LeftMotor'){
+                        LeftMotors.push(
                             {position: new Box2D.Common.Math.b2Vec2(
                                 (out.position.x+0.5)*self.w/4/PPM,
                                 (out.position.y+0.5)*self.h/4/PPM),
@@ -110,7 +108,19 @@ var Robot = function(inputs, outputs){
                                 0, out.actuator.state)});
                     }
                 });
-                makeAdjustments(this.body, motors);
+                makeAdjustments(this.body, LeftMotors);
+				var RightMotors = [];
+                _.each(self.outputs, function (out) {
+                    if(out.actuator.type === 'RightMotor'){
+                        RightMotors.push(
+                            {position: new Box2D.Common.Math.b2Vec2(
+                                (out.position.x+0.5)*self.w/4/PPM,
+                                (out.position.y+0.5)*self.h/4/PPM),
+                            target: new Box2D.Common.Math.b2Vec2(
+                                0, out.actuator.state)});
+                    }
+                });
+                makeAdjustments(this.body, RightMotors);
             }
         });
     var wGridToPixel = theRobot.w/4;
