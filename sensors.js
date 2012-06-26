@@ -50,7 +50,7 @@
 	
 	var proxNameCounter = 0;
 	var ProximitySensor = Sensors.ProximitySensor = function(){
-		this.imageSrc = "img/proximitysensor.bmp";
+		this.imageSrc = "img/touch_sensor.png";
 		this.name = "ProximitySensor" + (proxNameCounter++);
 		this.state = "Off";
 		this.update = function(touchList){
@@ -67,7 +67,7 @@
 	};
 	ProximitySensor.states = ["Off", "On"];
 	
-	var touchNameCounter = 0;
+	/*var touchNameCounter = 0;
 	var TouchSensor = Sensors.TouchSensor = function(){
 		this.imageSrc = "img/touch_sensor.png";
 		this.name = "TouchSensor" + (touchNameCounter++);
@@ -84,7 +84,7 @@
 		this.points = makeArc(3,Math.PI,5);
 	};
 	TouchSensor.states = ["Off", "On"];
-	
+	*/
 	var soundNameCounter = 0;
 	var SoundSensor = Sensors.SoundSensor = function(){
 		this.imageSrc = "img/soundsensor.bmp";
