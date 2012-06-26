@@ -31,69 +31,67 @@
 	<div class="content">
 		<img class="logo" src="PI_hackathon\ropuzzle_700.png" />
         <div id="instructions" class="gray_box"></div>
-        <div class="quarters">
-            <div class="first_row">
-                <div id="cr-stage-container" class="gray_box">
-                    <div id="cr-stage">
-                    </div>
+        <div class="first_row">
+            <div id="cr-stage-container" class="gray_box">
+                <div id="cr-stage">
                 </div>
-                <div class="parts_list">
-                    <div class="gray_box">
-                        <h3>Part List</h3>
-                        <table id="robot-parts">
-                            <tr data-bind="foreach: sensors">
-							    <td class="tool-box-cell">
-								    <div class="robot-part" data-bind="data: {object: $data}" >
-									    <img data-bind="attr: {id: object.name, src: object.imageSrc}" class="input" />
-									    <p class="robot-part-descriptor" data-bind="text: 'Sensor ' + object.name[object.name.length-1]"></p>
-								    </div>
-						        </td>
-                            </tr>
-						    <tr data-bind="foreach: actuators">
-							    <td class="tool-box-cell">
-								    <div class="robot-part" data-bind="data: {object: $data}">
-									    <img data-bind="attr: {id: object.name, src: object.imageSrc}" class="output" />
-									    <p class="robot-part-descriptor" data-bind="text: 'Motor ' + object.name[object.name.length-1]"></p>
-								    </div>
-							    </td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div class="gray_box">
-                        <h3>Your Robot</h3>
-                        <table class="grid" id="robot-design">
-                            <tr class="robot-cell-row">
-                                <td id="robot-0" class="robot-cell"></td>
-                                <td id="robot-1" class="robot-cell"></td>
-                                <td id="robot-2" class="robot-cell"></td>
-                                <td id="robot-3" class="robot-cell"></td>
-                            </tr>
-                            <tr class="robot-cell-row">
-                                <td id="robot-4" class="robot-cell"></td>
-                                <td id="robot-5" class="robot-cell"></td>
-                                <td id="robot-6" class="robot-cell"></td>
-                                <td id="robot-7" class="robot-cell"></td>
-                            </tr>
-                            <tr class="robot-cell-row">
-                                <td id="robot-8" class="robot-cell"></td>
-                                <td id="robot-9" class="robot-cell"></td>
-                                <td id="robot-10" class="robot-cell"></td>
-                                <td id="robot-11" class="robot-cell"></td>
-                            </tr>
-                            <tr class="robot-cell-row">
-                                <td id="robot-12" class="robot-cell"></td>
-                                <td id="robot-13" class="robot-cell"></td>
-                                <td id="robot-14" class="robot-cell"></td>
-                                <td id="robot-15" class="robot-cell"></td>
-                            </tr>
-                        </table>
-                    </div>  
-                    <div id="help" class="gray_box">
-                        <h3>Attached Parts</h3>
-                        <ul data-bind="foreach: selectedObjects" >
-                        	<li data-bind="text: object.helptext"></li>
-                        </ul> 
-                    </div>
+            </div>
+            <div class="parts_list">
+                <div class="gray_box">
+                    <h3>Part List</h3>
+                    <table id="robot-parts">
+                        <tr data-bind="foreach: sensors">
+							<td class="tool-box-cell">
+								<div class="robot-part" data-bind="data: {object: $data}" >
+									<img data-bind="attr: {id: object.name, src: object.imageSrc}" class="input" />
+									<p class="robot-part-descriptor" data-bind="text: 'Sensor ' + object.name[object.name.length-1]"></p>
+								</div>
+						    </td>
+                        </tr>
+						<tr data-bind="foreach: actuators">
+							<td class="tool-box-cell">
+								<div class="robot-part" data-bind="data: {object: $data}">
+									<img data-bind="attr: {id: object.name, src: object.imageSrc}" class="output" />
+									<p class="robot-part-descriptor" data-bind="text: 'Motor ' + object.name[object.name.length-1]"></p>
+								</div>
+							</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="gray_box">
+                    <h3>Your Robot</h3>
+                    <table class="grid" id="robot-design">
+                        <tr class="robot-cell-row">
+                            <td id="robot-0" class="robot-cell"></td>
+                            <td id="robot-1" class="robot-cell"></td>
+                            <td id="robot-2" class="robot-cell"></td>
+                            <td id="robot-3" class="robot-cell"></td>
+                        </tr>
+                        <tr class="robot-cell-row">
+                            <td id="robot-4" class="robot-cell"></td>
+                            <td id="robot-5" class="robot-cell"></td>
+                            <td id="robot-6" class="robot-cell"></td>
+                            <td id="robot-7" class="robot-cell"></td>
+                        </tr>
+                        <tr class="robot-cell-row">
+                            <td id="robot-8" class="robot-cell"></td>
+                            <td id="robot-9" class="robot-cell"></td>
+                            <td id="robot-10" class="robot-cell"></td>
+                            <td id="robot-11" class="robot-cell"></td>
+                        </tr>
+                        <tr class="robot-cell-row">
+                            <td id="robot-12" class="robot-cell"></td>
+                            <td id="robot-13" class="robot-cell"></td>
+                            <td id="robot-14" class="robot-cell"></td>
+                            <td id="robot-15" class="robot-cell"></td>
+                        </tr>
+                    </table>
+                </div>  
+                <div id="help" class="gray_box">
+                    <h3>Attached Parts</h3>
+                    <ul data-bind="foreach: selectedObjects" >
+                        <li data-bind="text: object.helptext"></li>
+                    </ul> 
                 </div>
             </div>
         </div>
