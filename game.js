@@ -92,8 +92,14 @@ var Robot = function(sensors, motors){
         var fixture = theRobot.body.CreateFixture(fixtureDef);
         return {fixture:fixture, sensor:s};
     });
+    return theRobot;
 };
 
-Game.Robot = Robot([{sensor:new Sensors.LightSensor(), position:{x:2, y:2}}]);
+Game.resetRobot = function() {
+    robot.destroy();
+    robot = Robot(UserCode.inputs, UserCode.outputs);
+};
+
+var robot = Robot([{sensor:new Sensors.LightSensor(), position:{x:2, y:2}}]);
 
 });

@@ -80,6 +80,7 @@ $(function () {
         UserCode.inputs = inputs();
         UserCode.outputs = outputs();
         Game.running = true;
+        Game.resetRobot();
     });
 
     //set up the robot editor
