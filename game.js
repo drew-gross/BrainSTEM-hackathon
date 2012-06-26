@@ -25,7 +25,7 @@ window.Game = {}
 Game.running = false;
 
 var makeAdjustments = function(body, engines){
-    var factor = body.GetMass()/engines.length;
+    var factor = body.GetMass()/engines.length/2;
     _.each(_.filter(_.collect(engines, function(engine){
         var worldPos = body.GetWorldPoint(engine.position);
         var worldTarget = body.GetWorldVector(engine.target);
