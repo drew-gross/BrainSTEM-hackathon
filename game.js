@@ -110,8 +110,8 @@ var Robot = function(inputs, outputs){
     var wGridToPixel = theRobot.w/4;
     var hGridToPixel = theRobot.h/4;
     theRobot.inputs = _.collect(inputs, function(s){
-        s.sensor.attach(theRobot, s.position);
-        return s.sensor;
+        s.object.attach(theRobot, s.position);
+        return s.object;
     });
     theRobot.outputs = outputs;
     return theRobot;
