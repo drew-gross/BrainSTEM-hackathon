@@ -6,27 +6,38 @@ Crafty.DrawManager.draw = Crafty.DrawManager.drawAll;
 Crafty.Box2D.init();
 Crafty.background('rgb(255,255,255)');
 
-var level = window.level = window.Demo4;
+window.Game = {}
 
-_.each(level.walls, function(pointlist,i){
-	_.each(pointlist, function(p,i){
-		var pointhelper = {};
-		var nextPointHelper = {};
-		if(i != pointlist.length-1){
-			nextPointHelper.x = pointlist[(i+1)][0]
-			nextPointHelper.y = pointlist[(i+1)][1]
-			pointhelper.x = p[0];
-			pointhelper.y = p[1];
-			Component.Wall(pointhelper,nextPointHelper);
-		}
-		});
-		});
+var level;
+var goal;
 
-var goal = Component.Goal(level.endPosition);	
+var loadLevel = Game.loadLevel = function(theLevel){
+    window.level = Game.level = level = theLevel;
+    goal = Component.Goal(level.endPosition);
+    _.each(level.walls, function(pointlist,i){
+        _.each(pointlist, function(p,i){
+            var pointhelper = {};
+            var nextPointHelper = {};
+            if(i != pointlist.length-1){
+                nextPointHelper.x = pointlist[(i+1)][0];
+                nextPointHelper.y = pointlist[(i+1)][1];
+                pointhelper.x = p[0];
+                pointhelper.y = p[1];
+                Component.Wall(pointhelper,nextPointHelper);
+            }
+        });
+    });
+    _.each(level.panels, function(panel){
+        var p1 = {x:panel[0][0], y:panel[0][1]};
+        var p2 = {x:panel[1][0], y:panel[1][1]};
+        Component.Panel(p1, p2, panel[2]);
+    });
+    Game.resetRobot();
+};
 
 var rToD = (360/(2*Math.PI));
 window.scaleFactor = 0.88;
-window.Game = {}
+
 var PPM = Game.PPM = 30; // Pixels per meter.
 Game.running = false;
 
@@ -137,13 +148,14 @@ var Robot = function(inputs, outputs){
     return theRobot;
 };
 
+var robot;
+
 Game.resetRobot = function() {
-    robot.destroy();
+    if(robot){robot.destroy();}
     _.delay(function(){
         robot = Robot(UserCode.inputs, UserCode.outputs);
     }, 50);
 };
 
-var robot = Robot([]);
-
+loadLevel(window.Demo4);
 });
