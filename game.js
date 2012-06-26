@@ -91,33 +91,33 @@ var Robot = function(inputs, outputs){
                 var outputs = UserCode.run(inputs);
                 _.each(outputs,function(value, key){
                     var out = _.find(self.outputs, function(out){
-                        return out.actuator.name === key;
+                        return out.object.name === key;
                     });
                     if(out){
-                        out.actuator.state = value;
+                        out.object.state = value;
                     }
                 });
                 var LeftMotors = [];
                 _.each(self.outputs, function (out) {
-                    if(out.actuator.type === 'LeftMotor'){
+                    if(out.object.type === 'LeftMotor'){
                         LeftMotors.push(
                             {position: new Box2D.Common.Math.b2Vec2(
                                 (out.position.x+0.5)*self.w/4/PPM,
                                 (out.position.y+0.5)*self.h/4/PPM),
                             target: new Box2D.Common.Math.b2Vec2(
-                                0, out.actuator.state)});
+                                0, out.object.state)});
                     }
                 });
                 makeAdjustments(this.body, LeftMotors);
 				var RightMotors = [];
                 _.each(self.outputs, function (out) {
-                    if(out.actuator.type === 'RightMotor'){
+                    if(out.object.type === 'RightMotor'){
                         RightMotors.push(
                             {position: new Box2D.Common.Math.b2Vec2(
                                 (out.position.x+0.5)*self.w/4/PPM,
                                 (out.position.y+0.5)*self.h/4/PPM),
                             target: new Box2D.Common.Math.b2Vec2(
-                                0, out.actuator.state)});
+                                0, out.object.state)});
                     }
                 });
                 makeAdjustments(this.body, RightMotors);
