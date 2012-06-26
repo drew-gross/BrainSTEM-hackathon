@@ -43,7 +43,7 @@
             }
 		}	
 
-		this.points = makeArc(100,Math.PI,30);
+		this.points = makeArc(50,Math.PI/2,30);
 	};
 	LightSensor.states = ["Nothing", "Black", "White"];
 	
