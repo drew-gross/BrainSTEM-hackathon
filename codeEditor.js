@@ -38,19 +38,21 @@ $(function () {
             return {object:actuator, position: ko.observable(null) };
         })
 	};
-    viewModel.selectedObjects = ko.computed(function(){
-        return _.filter(_.collect(viewModel.sensors.concat(viewModel.actuators), function(object){
-            return {object: object.object, position: object.position()};
-        }), function(object){
-            return (object.position !== null);
-        });
-    });
-    viewModel.selectedActuators = ko.computed(function () {
-        return _.filter(_.collect(viewModel.objects, function (object) {
+    var filterselected = function(objects){
+        return _.filter(_.collect(objects, function (object) {
             return { object: object.object, position: object.position() };
         }), function (object) {
             return (object.position !== null);
         });
+    };
+    viewModel.selectedActuators = ko.computed(function () {
+        return filterselected(viewModel.actuators);
+    });
+    viewModel.selectedSensors = ko.computed(function () {
+        return filterselected(viewModel.sensors);
+    });
+    viewModel.selectedObjects = ko.computed(function(){
+        return viewModel.selectedActuators().concat(viewModel.selectedSensors());
     });
 	ko.applyBindings(viewModel);
 	
@@ -73,8 +75,8 @@ $(function () {
 
     $("#run").click(function () {
         UserCode.code = editAreaLoader.getValue("usercode");
-        UserCode.inputs = viewModel.sensors;
-        UserCode.outputs = outputs();
+        UserCode.inputs = viewModel.selectedSensors();
+        UserCode.outputs = viewModel.selectedActuators();
         Game.running = true;
         Game.resetRobot();
     });
