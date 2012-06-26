@@ -83,9 +83,11 @@
             </div>
         </div>
         <div class="clear"> <!--style="margin-top: 300px;"-->
-            <button class="butthorn" id="run" type="button">Upload my design</button>
+            <img class="butthorn" id="run" type="button" src="PI_hackathon\upload_button.png"/>
 		</div>
-        <textarea id="usercode" cols="100" rows="12">
+		<div class="sextarea">
+			<p>Enter your code here:</p>
+			<textarea id="usercode" cols="100" rows="30">
 if(inputs.LightSensor0 === "Black"){
 	outputs.LeftMotor0 = 0.5;
 	outputs.RightMotor0 = -0.5;
@@ -95,7 +97,8 @@ else{
 	outputs.RightMotor1 = 2.5;
 }
 console.log(inputs.ProximitySensor2);
-		</textarea>
+			</textarea>
+		</div>
 	</div>
 </body>
 
