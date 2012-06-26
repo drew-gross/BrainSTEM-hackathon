@@ -32,14 +32,14 @@
 	
 	_.map(level.walls,function(eachList){
 		_.map(eachList, function(eachPoint){
-			eachPoint[0] *= 78;
-			eachPoint[1] *= 78;
+			eachPoint[0] *= 68;
+			eachPoint[1] *= 68;
 			});
 			});
 	
 	level.sensors = [new Sensors.ProximitySensor(), new Sensors.ProximitySensor()];
 	level.actuators = [new Actuators.LeftMotor(), new Actuators.RightMotor()];
-    level.startPosition = {x:720, y:30};
+    level.startPosition = {x:629, y:28};
     level.endPosition = { x: 700, y: 200, w: 50, h: 50 };
     level.instructions = "#level2instructions"
 })();

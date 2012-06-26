@@ -53,13 +53,13 @@
             while(rawList){
                 var contact = rawList.contact;
                 if(contact.GetFixtureA() === sensor.fixture ||
-                        contact.GetFixtureB() === sensor.fixture){
-                            var id = rawList.other.GetUserData();
-                            if(id){
-                                collisions.push([Crafty(id),
-                                        robot.body.GetLocalPoint(
-                                            rawList.other.GetWorldCenter())
-                                        ]);
+                    contact.GetFixtureB() === sensor.fixture){
+                        var id = rawList.other.GetUserData();
+                        if(id){
+                            collisions.push([Crafty(id),
+                                robot.body.GetLocalPoint(
+                                rawList.other.GetWorldCenter())
+                                ]);
                             }
                         }
                 rawList = rawList.next;

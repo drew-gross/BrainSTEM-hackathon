@@ -1,6 +1,7 @@
 $(function(){
 var PPM = 30; // Pixels per meter.
-Crafty.init(800, 800);
+
+Crafty.init(700, 700);
 Crafty.DrawManager.draw = Crafty.DrawManager.drawAll;
 Crafty.Box2D.init();
 Crafty.background('rgb(255,255,255)');
@@ -24,7 +25,7 @@ _.each(level.walls, function(pointlist,i){
 var goal = Component.Goal(level.endPosition);	
 
 var rToD = (360/(2*Math.PI));
-
+window.scaleFactor = 0.88;
 window.Game = {}
 var PPM = Game.PPM = 30; // Pixels per meter.
 Game.running = false;
@@ -46,10 +47,7 @@ var makeAdjustments = function(body, engines){
 };
 
 var Robot = function(inputs, outputs){
-    var theRobot =  Crafty.e("Canvas, Box2D, DrawPolygon")
-        .attr({x: level.startPosition.x, y: level.startPosition.y, w: 40, h: 40, type:"dynamic",
-            leftMotor: 0, rightMotor: 0, memory: {},
-            draw_polygons:[
+	var robotGrid = [
             [[00,00],[10,00],[10,10],[00,10]],
             [[00,10],[10,10],[10,20],[00,20]],
             [[00,20],[10,20],[10,30],[00,30]],
@@ -66,7 +64,19 @@ var Robot = function(inputs, outputs){
             [[30,10],[40,10],[40,20],[30,20]],
             [[30,20],[40,20],[40,30],[30,30]],
             [[30,30],[40,30],[40,40],[30,40]]
-            ]})
+            ];
+			
+			_.map(robotGrid,function(eachList){
+		_.map(eachList, function(eachPoint){
+			eachPoint[0] *= window.scaleFactor;
+			eachPoint[1] *= window.scaleFactor;
+			});
+			});
+    var theRobot =  Crafty.e("Canvas, Box2D, DrawPolygon")
+        .attr({x: level.startPosition.x, y: level.startPosition.y, w: 40 * window.scaleFactor, h: 40 * window.scaleFactor, type:"dynamic",
+            leftMotor: 0, rightMotor: 0, memory: {},
+            draw_polygons:robotGrid
+			})
         .bind('EnterFrame', function (data) {
             var self = this;
             if(Game.running && data.frame % 1 == 0){
