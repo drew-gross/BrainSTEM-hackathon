@@ -65,6 +65,7 @@ $(function () {
             eval(UserCode.code);
             return outputs;
         } catch(err){
+			confirm(err);
             // TODO: Display the error to the user.
             return {};
         }
