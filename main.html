@@ -12,64 +12,78 @@
 
 </head>
 <body>
-	<img src="PI_hackathon\name_700.png" />
-    <script type="text/javascript" src="codeEditor.js"></script>
-	<script type="text/javascript" src="game.js"></script>
-    <table id="robot-design">
-        <tr class="robot-cell-row">
-            <td class="robot-cell">
-            </td>
-            <td class="robot-cell">
-            </td>
-            <td class="robot-cell">
-            </td>
-            <td class="robot-cell">
-            </td>
-        </tr>
-        <tr class="robot-cell-row">
-            <td class="robot-cell">
-            </td>
-            <td class="robot-cell">
-            </td>
-            <td class="robot-cell">
-            </td>
-            <td class="robot-cell">
-            </td>
-        </tr>
-        <tr class="robot-cell-row">
-            <td class="robot-cell">
-            </td>
-            <td class="robot-cell">
-            </td>
-            <td class="robot-cell">
-            </td>
-            <td class="robot-cell">
-            </td>
-        </tr>
-        <tr class="robot-cell-row">
-            <td class="robot-cell">
-            </td>
-            <td class="robot-cell">
-            </td>
-            <td class="robot-cell">
-            </td>
-            <td class="robot-cell">
-            </td>
-        </tr>
-    </table>
-    <div id="cr-stage"></div>
-    <div>
-        <button id="run" type="button">Upload your code</button>
-        <table id="robot-parts">
-            <tr>
-                <td class="tool-box-cell"><img class="robot-part" src="img/motor.bmp" /></td>
-                <td class="tool-box-cell"><img class="robot-part" src="img/wheel.bmp" /></td>
-            </tr>
-        </table>
-    </div>
-    <textarea id="usercode" cols="100" rows="50">if (inputs.lightsensor1 &gt; 50) {
-	outputs.motor1 = 0.1;
-	outputs.motor2 = 0.1;
-}</textarea>
+	<div class="content">
+		<img class="logo" src="PI_hackathon\name_700.png" />
+		
+		<script type="text/javascript" src="codeEditor.js"></script>
+		<script type="text/javascript" src="game.js"></script>
+		
+		<div class="quarters">
+			<div class="first_row">
+				<div class="map" id="cr-stage"></div>
+				
+				<div class="parts_list">
+					<table id="robot-parts">
+						<tr>
+							<td class="tool-box-cell"><img class="robot-part" src="img/motor.bmp" /></td>
+							<td class="tool-box-cell"><img class="robot-part" src="img/wheel.bmp" /></td>
+						</tr>
+					</table>
+				
+				
+					<table class="grid" id="robot-design">
+						<tr class="robot-cell-row">
+							<td class="robot-cell">
+							</td>
+							<td class="robot-cell">
+							</td>
+							<td class="robot-cell">
+							</td>
+							<td class="robot-cell">
+
+							</td>
+						</tr>
+						<tr class="robot-cell-row">
+							<td class="robot-cell">
+							</td>
+							<td class="robot-cell">
+							</td>
+							<td class="robot-cell">
+							</td>
+							<td class="robot-cell">
+							</td>
+						</tr>
+						<tr class="robot-cell-row">
+							<td class="robot-cell">
+							</td>
+							<td class="robot-cell">
+							</td>
+							<td class="robot-cell">
+							</td>
+							<td class="robot-cell">
+							</td>
+						</tr>
+						<tr class="robot-cell-row">
+							<td class="robot-cell">
+							</td>
+							<td class="robot-cell">
+							</td>
+							<td class="robot-cell">
+							</td>
+							<td class="robot-cell">
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div style="margin-top: 300px;">
+			<button id="run" type="button">Upload your code</button>
+			<textarea id="usercode" cols="100" rows="50">if (inputs.lightsensor1 &gt; 50) {
+				outputs.motor1 = 0.1;
+				outputs.motor2 = 0.1;
+			}</textarea>
+		</div>
+	</div>
 </body>
 </html>
