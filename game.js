@@ -74,23 +74,22 @@ var Robot = function(inputs, outputs){
                     sensor.sensor.sensor.state;
                 });
                 var outputs = UserCode.run(inputs);
-                var outputMotors = _.filter(UserCode.outputs, function(output){
-                    return output.actuator.type === "Motor"
+                _.each(outputs,function(value, key){
+                    _.find(self.outputs, function(out){
+                        return out.actuator.name === key;
+                    }).actuator.state = value;
                 });
-                var actuatedOutputMotors = _.filter(outputMotors, function(motor){
-                    return (_.keys(outputs).indexOf(motor.actuator.name) != -1);
+                var motors = [];
+                _.each(self.outputs, function (out) {
+                    if(out.actuator.type === 'Motor'){
+                        motors.push(
+                            {position: new Box2D.Common.Math.b2Vec2(
+                                (out.position.x+0.5)*self.w/4/PPM,
+                                (out.position.y+0.5)*self.h/4/PPM),
+                            target: new Box2D.Common.Math.b2Vec2(
+                                0, out.actuator.state)});
+                    }
                 });
-                _.each(actuatedOutputMotors, function (motor) {
-                    motor.actuator.state = outputs[motor.actuator.name];
-                });
-                var motors = [
-                {position: new Box2D.Common.Math.b2Vec2(0,this.h/2/PPM),
-                    target: new Box2D.Common.Math.b2Vec2(0,outputs.motor1)},
-                {position: new Box2D.Common.Math.b2Vec2(
-                                            this.w/PPM, this.h/2/PPM),
-                    target: new Box2D.Common.Math.b2Vec2(0,
-                                                outputs.motor2)}
-                ];
                 makeAdjustments(this.body, motors);
             }
         });
@@ -114,6 +113,7 @@ var Robot = function(inputs, outputs){
         var fixture = theRobot.body.CreateFixture(fixtureDef);
         return {fixture:fixture, sensor:s};
     });
+    theRobot.outputs = outputs;
     return theRobot;
 };
 
