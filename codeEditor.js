@@ -1,26 +1,41 @@
 $(function () {
     //helper functions
+    var getPosition = function (htmlElem) {
+        var indexRegex = /robot-(\d+)/g;
+        var matches = indexRegex.exec($(htmlElem).data("location"));
+        var index = matches[1];
+        return {
+                   x:index % 4,
+                   y:Math.floor(index / 4)
+               }
+    };
+
+    var isOnRobot = function () {
+        var partLocation = $(this).data("location");
+        if (typeof(partLocation) !== "string") {
+            return false;
+        }
+        return (partLocation.search("robot") === 0);
+    }
+
     var inputs = function() {
-        elems = $(".input").filter(function () {
-            var partLocation = $(this).data("location");
-            if (typeof(partLocation) !== "string") {
-                return false;
-            }
-            return (partLocation.search("robot") === 0);
-        });
+        elems = $(".input").filter(isOnRobot);
         return _.map(elems,function (elem, key) {
-            var indexRegex = /robot-(\d+)/g;
-            var matches = indexRegex.exec($(elem).data("location"));
-            var index = matches[1];
             return {
                         sensor:{},
-                        position:
-                        {
-                            x:index % 4,
-                            y:Math.floor(index / 4)
-                        }
+                        position: getPosition(elem)
                    };
                    
+        });
+    };
+
+    var outputs = function() {
+        elems = $(".output").filter(isOnRobot);
+        return _.map(elems, function (elem, key) {
+            return {
+                        actuator:{},
+                        position:getPosition(elem)
+                   }
         });
     };
     //set up the code editor
@@ -42,6 +57,7 @@ $(function () {
     $("#run").click(function () {
         UserCode.code = editAreaLoader.getValue("usercode");
         UserCode.inputs = inputs();
+        UserCode.outputs = outputs();
         Game.running = true;
     });
     //set up the robot editor
@@ -55,5 +71,10 @@ $(function () {
             ui.draggable.data("location", this.id);
         }
     });
-    $(".tool-box-cell").droppable({ accept: ".robot-part" });
+    $(".tool-box-cell").droppable({ 
+        accept: ".robot-part",
+        drop: function (event, ui) {
+            ui.draggable.removeData("location");
+        }
+    });
 });
