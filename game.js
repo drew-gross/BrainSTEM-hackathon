@@ -121,7 +121,9 @@ var Robot = function(inputs, outputs){
                 });
                 makeAdjustments(this.body, RightMotors);
                 if (theRobot.intersect(goal)) {
-                    alert("winnar");
+                    Game.running = false;
+                    var victoryHtml = '<div id="victory-screen">Congratulations!<p><button id="next-level">Next level</button></p></div>'
+                    $.fancybox(victoryHtml);
                 }
             }
         });

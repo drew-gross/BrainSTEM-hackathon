@@ -99,4 +99,9 @@ $(function () {
             ui.draggable.data("object").position(null);
         }
     });
+
+    //level management
+    $("body").on("click", "#next-level", function () {
+        alert("nect!");
+    });
 });

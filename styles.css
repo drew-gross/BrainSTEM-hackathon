@@ -95,3 +95,8 @@ a:visited {
 img.robot-part{
 	vertical-align: center;
 }
+
+#victory-screen 
+{
+    text-align:center;
+}
