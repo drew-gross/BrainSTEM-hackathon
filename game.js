@@ -100,6 +100,6 @@ Game.resetRobot = function() {
     robot = Robot(UserCode.inputs, UserCode.outputs);
 };
 
-var robot = Robot([{sensor:new Sensors.LightSensor(), position:{x:2, y:2}}]);
+var robot = Robot([]);
 
 });
