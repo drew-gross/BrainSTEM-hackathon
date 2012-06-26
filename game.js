@@ -42,7 +42,7 @@ var makeAdjustments = function(body, engines){
     });
 };
 
-var Robot = function(sensors, motors){
+var Robot = function(inputs, outputs){
     var theRobot =  Crafty.e("Canvas, Box2D, DrawPolygon")
         .attr({x: 375, y: 425, w: 40, h: 40, type:"dynamic",
             leftMotor: 0, rightMotor: 0,
@@ -52,7 +52,7 @@ var Robot = function(sensors, motors){
             if(Game.running && data.frame % 1 == 0){
                 var list = this.body.GetContactList();
                 var inputs = {};
-                _.each(this.sensors, function(sensor){
+                _.each(this.inputs, function(sensor){
                     var collisions = [];
                     var rawList = list;
                     while(rawList){
@@ -96,7 +96,7 @@ var Robot = function(sensors, motors){
         });
     var wGridToPixel = theRobot.w/4;
     var hGridToPixel = theRobot.h/4;
-    theRobot.sensors = _.collect(sensors, function(s){
+    theRobot.inputs = _.collect(inputs, function(s){
         var points = _.map(s.sensor.points, function(point){
             return [point[0] + wGridToPixel/2 + s.position.x * wGridToPixel,
                point[1] + hGridToPixel/2 + s.position.y * hGridToPixel];
