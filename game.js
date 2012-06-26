@@ -1,6 +1,7 @@
 $(function(){
 var PPM = 30; // Pixels per meter.
 Crafty.init(500, 500);
+Crafty.DrawManager.draw = Crafty.DrawManager.drawAll;
 Crafty.Box2D.init();
 Crafty.background('rgb(255,255,255)');
 
