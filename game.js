@@ -33,7 +33,9 @@ var makeAdjustments = function(body, engines){
         impulse.SetV(worldTarget);
         impulse.Subtract(worldCurrent);
         impulse.Multiply(factor);
-        body.ApplyImpulse(impulse, worldPos);
+        if(impulse.LengthSquared() > 1e-5){
+            body.ApplyImpulse(impulse, worldPos);
+        }
     });
 };
 
