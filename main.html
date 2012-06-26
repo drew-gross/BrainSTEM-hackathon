@@ -7,60 +7,63 @@
 	<script type="text/javascript" src="craftybox.js"></script>
     <script type="text/javascript" src="editarea_0_8_2/edit_area/edit_area_full.js" ></script>
 	<script type="text/javascript" src="underscore.js"></script>
-    <style>
-.robot-cell, .tool-box-cell{
-width:32px;
-height:32px;
-border-style:solid;
-border-width:1px;
-border-color:black;
-}
-    </style>
+	
+	<link rel="stylesheet" type="text/css" href="styles.css" />
+
 </head>
 <body>
     <script type="text/javascript" src="codeEditor.js"></script>
 	<script type="text/javascript" src="game.js"></script>
-    <table id="robot-design">
-        <tr class="robot-cell-row">
-            <td id="robot-0" class="robot-cell"></td>
-            <td id="robot-1" class="robot-cell"></td>
-            <td id="robot-2" class="robot-cell"></td>
-            <td id="robot-3" class="robot-cell"></td>
-        </tr>
-        <tr class="robot-cell-row">
-            <td id="robot-4" class="robot-cell"></td>
-            <td id="robot-5" class="robot-cell"></td>
-            <td id="robot-6" class="robot-cell"></td>
-            <td id="robot-7" class="robot-cell"></td>
-        </tr>
-        <tr class="robot-cell-row">
-            <td id="robot-8" class="robot-cell"></td>
-            <td id="robot-9" class="robot-cell"></td>
-            <td id="robot-10" class="robot-cell"></td>
-            <td id="robot-11" class="robot-cell"></td>
-        </tr>
-        <tr class="robot-cell-row">
-            <td id="robot-12" class="robot-cell"></td>
-            <td id="robot-13" class="robot-cell"></td>
-            <td id="robot-14" class="robot-cell"></td>
-            <td id="robot-15" class="robot-cell"></td>
-        </tr>
-    </table>
-    <div id="cr-stage"></div>
-    <div>
-        <button id="run" type="button">Upload your code</button>
-        <table id="robot-parts">
-            <tr>
-                <td id="tool-box-0" class="tool-box-cell"><img id="motor1" class="robot-part output" src="img/motor.bmp" /></td>
-                <td id="tool-box-1" class="tool-box-cell"><img id="motor2" class="robot-part output" src="img/motor.bmp" /></td>
-                <td id="tool-box-2" class="tool-box-cell"><img id="sound-sensor1" class="robot-part input" src="img/soundsensor.bmp" /></td>
-                <td id="tool-box-3" class="tool-box-cell"><img id="sound-sensor2" class="robot-part input" src="img/soundsensor.bmp" /></td>
-            </tr>
-        </table>
-    </div>
-    <textarea id="usercode" cols="100" rows="50">if (inputs.lightsensor1 &gt; 50) {
-	outputs.motor1 = 0.1;
-	outputs.motor2 = 0.1;
+	<div class="content">
+		<img class="logo" src="PI_hackathon\name_700.png" />
+        <div class="quarters">
+            <div class="first_row">
+                <div class="map" id="cr-stage"></div>
+                <div class="parts_list">
+                    <table id="robot-parts">
+                        <tr>
+                            <td id="tool-box-0" class="tool-box-cell"><img id="motor1" class="robot-part output" src="img/motor.bmp" /></td>
+                            <td id="tool-box-1" class="tool-box-cell"><img id="motor2" class="robot-part output" src="img/motor.bmp" /></td>
+                            <td id="tool-box-2" class="tool-box-cell"><img id="sound-sensor1" class="robot-part input" src="img/soundsensor.bmp" /></td>
+                            <td id="tool-box-3" class="tool-box-cell"><img id="sound-sensor2" class="robot-part input" src="img/soundsensor.bmp" /></td>
+                        </tr>
+                    </table>
+                    <table class="grid" id="robot-design">
+                        <tr class="robot-cell-row">
+                            <td id="robot-0" class="robot-cell"></td>
+                            <td id="robot-1" class="robot-cell"></td>
+                            <td id="robot-2" class="robot-cell"></td>
+                            <td id="robot-3" class="robot-cell"></td>
+                        </tr>
+                        <tr class="robot-cell-row">
+                            <td id="robot-4" class="robot-cell"></td>
+                            <td id="robot-5" class="robot-cell"></td>
+                            <td id="robot-6" class="robot-cell"></td>
+                            <td id="robot-7" class="robot-cell"></td>
+                        </tr>
+                        <tr class="robot-cell-row">
+                            <td id="robot-8" class="robot-cell"></td>
+                            <td id="robot-9" class="robot-cell"></td>
+                            <td id="robot-10" class="robot-cell"></td>
+                            <td id="robot-11" class="robot-cell"></td>
+                        </tr>
+                        <tr class="robot-cell-row">
+                            <td id="robot-12" class="robot-cell"></td>
+                            <td id="robot-13" class="robot-cell"></td>
+                            <td id="robot-14" class="robot-cell"></td>
+                            <td id="robot-15" class="robot-cell"></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top: 300px;">
+            <button id="run" type="button">Upload your code</button>
+            <textarea id="usercode" cols="100" rows="50">if (inputs.lightsensor1 &gt; 50) {
+    outputs.motor1 = 0.1;
+    outputs.motor2 = 0.1;
 }</textarea>
+        </div>
+	</div>
 </body>
 </html>
