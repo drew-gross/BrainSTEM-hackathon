@@ -70,9 +70,14 @@ $(function () {
     UserCode.inputs = [];
     UserCode.outputs = [];
     UserCode.run = function(inputs){
-        var outputs = {};
-        eval(UserCode.code);
-        return outputs;
+        try {
+            var outputs = {};
+            eval(UserCode.code);
+            return outputs;
+        } catch(err){
+            // TODO: Display the error to the user.
+            return {};
+        }
     };
 
     $("#run").click(function () {
