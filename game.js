@@ -87,9 +87,9 @@ var Robot = function(sensors, motors){
                 {position: new Box2D.Common.Math.b2Vec2(0,this.h/2/PPM),
                     target: new Box2D.Common.Math.b2Vec2(0,outputs.motor1)},
                 {position: new Box2D.Common.Math.b2Vec2(
-                                            this.w/2/PPM, this.h/2/PPM),
+                                            this.w/PPM, this.h/2/PPM),
                     target: new Box2D.Common.Math.b2Vec2(0,
-                                                outputs.motor2 - 1.0e-5)}
+                                                outputs.motor2)}
                 ];
                 makeAdjustments(this.body, motors);
             }
