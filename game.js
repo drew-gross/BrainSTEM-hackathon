@@ -5,22 +5,9 @@ Crafty.DrawManager.draw = Crafty.DrawManager.drawAll;
 Crafty.Box2D.init();
 Crafty.background('rgb(255,255,255)');
 
-/*
-var walls = [
-{x:250, y:500},
-{x:0, y:500},
-{x:0, y:0},
-{x:500, y:0},
-{x:500, y:500},
-{x:250, y:500},
-{x:250, y:150}
-];
+var level = window.Level1;
 
-_.each(walls, function(p,i){
-    Component.Wall(p, walls[(i+1)%walls.length]);
-});*/
-
-_.each(window.Level2.walls, function(pointlist,i){
+_.each(level.walls, function(pointlist,i){
 	_.each(pointlist, function(p,i){
 		var pointhelper = {};
 		var nextPointHelper = {};
@@ -59,7 +46,7 @@ var makeAdjustments = function(body, engines){
 
 var Robot = function(inputs, outputs){
     var theRobot =  Crafty.e("Canvas, Box2D, DrawPolygon")
-        .attr({x: 720, y: 15, w: 40, h: 40, type:"dynamic",
+        .attr({x: level.startPosition.x, y: level.startPosition.y, w: 40, h: 40, type:"dynamic",
             leftMotor: 0, rightMotor: 0,
             draw_polygons:[
             [[00,00],[10,00],[10,10],[00,10]],
