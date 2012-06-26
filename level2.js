@@ -28,14 +28,6 @@
 	level.actuators = [new Actuators.LeftMotor(), new Actuators.RightMotor()];
     level.startPosition = {x:16, y:16};
     level.endPosition = { x: 8*80 - 20, y: 3*80 + 42, w: 50, h: 48 };
-    level.instructions = 
-'Welcome to Robuzzle. Robuzzle is a game where you design and program a '+
-'robot to solve puzzles and get to a goal. You can add parts to your '+
-'robot from the toolbox, and write code for your robot in the windows '+
-'below. Try to make the robot reach the goal by adding motors to your '+
-'robot. You can control the motors by assigning speeds to the motors '+
-'in the code window. Try this example:'+
-'<p><code>outputs.RightMotor0 = 0.5;</code></p>'+
-'Then, upload your code to see what happens! If you\'ve attached the '+
-'right facing motor, your robot should start moving.';
+    level.instructions = "This is a classic puzzle about solving mazes. Use the knowledge that you've\
+	aquired over the course of the tutorial to navigate your robot through the maze.";
 })();

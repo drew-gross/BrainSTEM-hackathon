@@ -3,7 +3,7 @@
 
     var LeftMotorNameCounter = 0;
     var LeftMotor = Actuators.LeftMotor = function() {
-        this.imageSrc = "img/motor_left.png";
+        this.imageSrc = "PI_hackathon/motorwheel_left.png";
         this.name = "LeftMotor" + (LeftMotorNameCounter++);
         this.type = "LeftMotor";
         this.state = 0;
@@ -12,7 +12,7 @@
 	
 	var RightMotorNameCounter = 0;
     var RightMotor = Actuators.RightMotor = function() {
-        this.imageSrc = "img/motor_right.png";
+        this.imageSrc = "PI_hackathon/motorwheel_right.png";
         this.name = "RightMotor" + (RightMotorNameCounter++);
         this.type = "RightMotor";
         this.state = 0;

@@ -7,9 +7,8 @@ Crafty.Box2D.init();
 Crafty.background('rgb(255,255,255)');
 
 window.Game = {}
-
-var level;
 var goal;
+var level;
 
 var loadLevel = Game.loadLevel = function(theLevel){
     window.level = Game.level = level = theLevel;
