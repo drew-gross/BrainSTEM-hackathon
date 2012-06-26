@@ -67,26 +67,10 @@ var Robot = function(inputs, outputs){
             if(Game.running && data.frame % 1 == 0){
                 var list = this.body.GetContactList();
                 var inputs = {};
-                _.each(this.inputs, function(sensor){
-                    var collisions = [];
-                    var rawList = list;
-                    while(rawList){
-                        var contact = rawList.contact;
-                        if(contact.GetFixtureA() === sensor.fixture ||
-                            contact.GetFixtureB() === sensor.fixture){
-                                var id = rawList.other.GetUserData();
-                                if(id){
-                                    collisions.push([Crafty(id),
-                                        self.body.GetLocalPoint(
-                                            rawList.other.GetWorldCenter())
-                                        ]);
-                                }
-                        }
-                        rawList = rawList.next;
-                    }
-                    sensor.sensor.sensor.update(collisions);
-                    inputs[sensor.sensor.sensor.name] =
-                    sensor.sensor.sensor.state;
+                _.each(this.inputs, function(input){
+                    input.update(self);
+                    inputs[input.name] =
+                    input.state;
                 });
                 var outputs = UserCode.run(inputs);
                 _.each(outputs,function(value, key){
@@ -126,22 +110,8 @@ var Robot = function(inputs, outputs){
     var wGridToPixel = theRobot.w/4;
     var hGridToPixel = theRobot.h/4;
     theRobot.inputs = _.collect(inputs, function(s){
-        var points = _.map(s.sensor.points, function(point){
-            return [point[0] + wGridToPixel/2 + s.position.x * wGridToPixel,
-               point[1] + hGridToPixel/2 + s.position.y * hGridToPixel];
-        });
-        theRobot.draw_polygons.push(points);
-        var physicsPoints = _.map(points, function(point){
-            return new Box2D.Common.Math.b2Vec2(point[0]/PPM, point[1]/PPM);
-        });
-        var polygon = Box2D.Collision.Shapes.b2PolygonShape.AsArray(physicsPoints,
-            physicsPoints.length);
-        var fixtureDef = new Box2D.Dynamics.b2FixtureDef();
-        fixtureDef.density = fixtureDef.friction = fixtureDef.restitution = 0;
-        fixtureDef.isSensor = true;
-        fixtureDef.shape = polygon;
-        var fixture = theRobot.body.CreateFixture(fixtureDef);
-        return {fixture:fixture, sensor:s};
+        s.sensor.attach(theRobot, s.position);
+        return s.sensor;
     });
     theRobot.outputs = outputs;
     return theRobot;
