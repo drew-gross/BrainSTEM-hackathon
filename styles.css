@@ -17,7 +17,8 @@ body{
 }
 
 img.logo{
-	padding-top: 0.3cm !important;
+	padding-top: 0.5cm !important;
+	padding-bottom: 0.5cm !important;
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
@@ -112,7 +113,6 @@ img.robot-part{
 }
 #instructions
 {
-    margin:auto;
     width:800px;
     text-indent:50px;
 }
@@ -123,4 +123,20 @@ code{
      line-height: 1.25;
      background: transparent;
      border: 1px solid #bebab0;
+}
+.gray_box
+{
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:0.25cm;
+    margin-bottom:0.25cm;
+    text-align:center;
+    padding:20px;
+    background-color:#CFCFCF;
+    border-radius:10px;
+}
+
+.gray_box > * 
+{
+    margin:auto;
 }
