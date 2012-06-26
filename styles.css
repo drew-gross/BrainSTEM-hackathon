@@ -50,7 +50,13 @@ img.logo{
 }
 
 .butthorn{
-	float: top;
+	margin-top:25px;
+	margin-left: 50px;
+}
+
+.sextarea{
+	padding-left: 50px;
+	padding-top: 15px;
 }
 
 .grid{
