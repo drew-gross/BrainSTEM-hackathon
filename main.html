@@ -12,19 +12,20 @@
     <script type="text/javascript" src="fancybox/jquery.fancybox.js"></script>
     <link rel="stylesheet" href="fancybox/jquery.fancybox.css">
 	
-	<script type="text/javascript" src="game.js"></script>
     <script type="text/javascript" src="components.js"></script>
     <script type="text/javascript" src="sensors.js"></script>
     <script type="text/javascript" src="actuators.js"></script>
 	<script type="text/javascript" src="level1.js"></script>
 	<script type="text/javascript" src="level2.js"></script>
+	<script type="text/javascript" src="game.js"></script>
+    <script type="text/javascript" src="codeEditor.js"></script>
 
 	<link rel="stylesheet" type="text/css" href="styles.css" />
 </head>
 <body>
-    <script type="text/javascript" src="codeEditor.js"></script>
 	<div class="content">
 		<img class="logo" src="PI_hackathon\ropuzzle_700.png" />
+        <div id="instructions"></div>
         <div class="quarters">
             <div class="first_row">
                 <div class="map" id="cr-stage"></div>
@@ -32,17 +33,17 @@
                     <table id="robot-parts">
                         <tr data-bind="foreach: sensors">
 							<td class="tool-box-cell">
-								<div class="tool-box-div">
-                                <img data-bind="attr: {id: object.name, src: object.imageSrc}, data: {object: $data}" class="robot-part input" />
-									<span data-bind="text: name"></span>
+								<div class="robot-part" data-bind="data: {object: $data}" >
+									<img data-bind="attr: {id: object.name, src: object.imageSrc}" class="input" />
+									<p class="robot-part-descriptor" data-bind="text: 'Sensor ' + object.name[object.name.length-1]"></p>
 								</div>
 						    </td>
                         </tr>
 						<tr data-bind="foreach: actuators">
 							<td class="tool-box-cell">
-								<div class="tool-box-div">
-                                <img data-bind="attr: {id: object.name, src: object.imageSrc}, data: {object: $data}" class="robot-part output" />
-									<span data-bind="text: name"></span>
+								<div class="robot-part" data-bind="data: {object: $data}">
+									<img data-bind="attr: {id: object.name, src: object.imageSrc}" class="output" />
+									<p class="robot-part-descriptor" data-bind="text: 'Motor ' + object.name[object.name.length-1]"></p>
 								</div>
 							</td>
                         </tr>
@@ -85,12 +86,15 @@
         <div class="clear"> <!--style="margin-top: 300px;"-->
             <img class="butthorn" id="run" type="button" src="PI_hackathon\upload_button.png"/>
 		</div>
+
 		<div class="sextarea">
 			<p>Enter your code here:</p>
 			<textarea id="usercode" cols="100" rows="30">
-if(inputs.LightSensor0 === "Black"){
-	outputs.LeftMotor0 = 0.5;
-	outputs.RightMotor0 = -0.5;
+
+if(inputs.ProximitySensor2 === "Black"){
+	outputs.LeftMotor1 = 0.5;
+	outputs.RightMotor1 = -0.5;
+
 }
 else{
 	outputs.LeftMotor1 = 0.5;

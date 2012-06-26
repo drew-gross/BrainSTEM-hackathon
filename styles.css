@@ -63,6 +63,10 @@ img.logo{
 	/*float: right;*/
 }
 
+.robot-part-descriptor{
+	margin:0;
+}
+
 
 
 h1 {
@@ -102,7 +106,13 @@ img.robot-part{
 	vertical-align: center;
 }
 
-#victory-screen 
+#victory-screen
 {
     text-align:center;
+}
+#instructions
+{
+    margin:auto;
+    width:800px;
+    text-indent:50px;
 }
