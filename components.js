@@ -38,7 +38,39 @@
         };
         return Crafty.e("Goal, Canvas, 2D, Color")
         .attr(attrs)
-        .color("rgb(0,100,0)");
+        .color("rgba(99,255,99,0.7)");
     };
-
+    var colorLookup = {
+        'Red': 'rgb(255,0,0)',
+        'Green': 'rgb(0,255,0)',
+        'Blue': 'rgb(0,0,255)'
+    };
+    var Panel = Component.Panel = function(p1,p2,color){
+        var attrs = {
+            name: 'Panel',
+            sensor_color: color
+        };
+        if(p1.x === p2.x){
+            var start = Math.min(p1.y, p2.y);
+            var len = Math.max(p1.y, p2.y) - start;
+            _.extend(attrs, {
+                x: p1.x - 2,
+                y: start + 4,
+                w: 4,
+                h: len - 8
+            });
+        } else {
+            var start = Math.min(p1.x, p2.x);
+            var len = Math.max(p1.x, p2.x) - start;
+            _.extend(attrs, {
+                x: start - 2,
+                y: p1.y + 4,
+                w: len - 8,
+                h: 4
+            });
+        }
+        Crafty.e("Panel, Canvas, Color, Box2D")
+            .attr(attrs)
+            .color(colorLookup[color]);
+    };
 })();

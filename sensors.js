@@ -99,15 +99,14 @@
 		this.name = "GyroSensor" + (gyroNameCounter++);
 		this.state = 0;
 		this.update = function(robot){
-            this.state = robot.rotation
+                    this.state = ((robot.rotation % 360) + 360) % 360;
 		}	
         this.attach = function(robot, position){
-            attachHitSensor(robot, this, position);
+            // Nothing to do here.
         }
-        this.points = makeArc(30, Math.PI / 3, 30);
-        this.helptext = this.name + ". Use this sensor by reading inputs." + this.name + ", the value will be 'Nothing', 'Black', or 'White'";
+        this.helptext = this.name + ". Use this sensor by reading inputs." + this.name + ", the value a number between 0 and 360 exclusively, where 0 means pointing down.";
 	};
-	LightSensor.states = ["Nothing", "Black", "White"];
+	GyroSensor.states = [];
 	
 	var proxNameCounter = 0;
 	var ProximitySensor = Sensors.ProximitySensor = function(){
