@@ -23,7 +23,7 @@
 	
 	var magnitude = function(point){
 		return(Math.sqrt((point[0] * point[0]) + (point[1] * point[1])));
-	}
+	};
 	
 	var lightNameCounter = 0;
 	var LightSensor = Sensors.LightSensor = function(){
