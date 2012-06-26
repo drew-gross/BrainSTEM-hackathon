@@ -75,7 +75,7 @@
                         <p>These sensors and actuators are available:</p>
                         <ul data-bind="foreach: selectedObjects" >
                         	<li data-bind="text: object.helptext"></li>
-                        </ul>
+                        </ul> 
                     </div>
                 </div>
             </div>
@@ -83,8 +83,14 @@
         <div class="clear"> <!--style="margin-top: 300px;"-->
             <button class="butthorn" id="run" type="button">Upload your code</button>
             <textarea id="usercode" cols="100" rows="12">
-outputs.LeftMotor0 = 0.1;
-outputs.RightMotor0 = 0.1;
+if(inputs.LightSensor0 === "Black"){
+	outputs.LeftMotor0 = 0.5;
+	outputs.RightMotor0 = -0.5;
+}
+else{
+	outputs.LeftMotor0 = 0.5;
+	outputs.RightMotor0 = 2.5;
+}
 			</textarea>
         </div>
 	</div>
