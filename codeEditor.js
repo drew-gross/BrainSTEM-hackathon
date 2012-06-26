@@ -67,7 +67,8 @@ $(function () {
             eval(UserCode.code);
             return outputs;
         } catch(err){
-			confirm(err);
+	    confirm(err);
+            Game.running = false;
             // TODO: Display the error to the user.
             return {};
         }
