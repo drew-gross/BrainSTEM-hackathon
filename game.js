@@ -57,9 +57,32 @@ var Robot = function(sensors, motors){
             leftMotor: 0, rightMotor: 0,
             draw_polygons:[[[0,0],[40,0],[40,40],[0,40]]]})
         .bind('EnterFrame', function (data) {
-            var center = this.body.GetLocalCenter();
+            var self = this;
             if(Game.running && data.frame % 1 == 0){
-                var outputs = UserCode.run({lightsensor1: 60});
+                var list = this.body.GetContactList();
+                var inputs = {};
+                _.each(this.sensors, function(sensor){
+                    var collisions = [];
+                    var rawList = list;
+                    while(rawList){
+                        var contact = rawList.contact;
+                        if(contact.GetFixtureA() === sensor.fixture ||
+                            contact.GetFixtureB() === sensor.fixture){
+                                var id = rawList.other.GetUserData();
+                                if(id){
+                                    collisions.push([Crafty(id),
+                                        self.body.GetLocalPoint(
+                                            rawList.other.GetWorldCenter())
+                                        ]);
+                                }
+                        }
+                        rawList = rawList.next;
+                    }
+                    sensor.sensor.sensor.update(collisions);
+                    inputs[sensor.sensor.sensor.name] =
+                    sensor.sensor.sensor.state;
+                });
+                var outputs = UserCode.run(inputs);
                 this.leftMotor = new Box2D.Common.Math.b2Vec2(0,outputs.motor1);
                 this.rightMotor =  new Box2D.Common.Math.b2Vec2(0,
                     outputs.motor2 - 1.0e-5);
@@ -95,10 +118,10 @@ var Robot = function(sensors, motors){
         fixtureDef.isSensor = true;
         fixtureDef.shape = polygon;
         var fixture = theRobot.body.CreateFixture(fixtureDef);
-        return [fixture, s];
+        return {fixture:fixture, sensor:s};
     });
 };
 
-Game.Robot = Robot([{sensor:{points:[[0,0], [-5,30], [5,30]]}, position:{x:2, y:2}}]);
+Game.Robot = Robot([{sensor:new Sensors.LightSensor(), position:{x:2, y:2}}]);
 
 });
