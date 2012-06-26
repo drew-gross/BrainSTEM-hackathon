@@ -32,5 +32,6 @@
 	
 	level.sensors = [new Sensors.ProximitySensor(), new Sensors.ProximitySensor()];
 	level.actuators = [];
+    level.startPosition = {x:100, y:100};
 	
 })();
