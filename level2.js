@@ -12,7 +12,7 @@
 	[[0,7],[2,7],[2,9],[3,9],[3,8]],
 	[[1,8],[2,8]],
 	[[0,6],[1,6],[1,5],[2,5],[2,6]],
-	[[3,2],[2,4],[2,4]],
+	[[3,2],[3,4],[2,4]],
 	[[4,2],[4,5],[3,5],[3,7],[4,7],[4,8]],
 	[[4,7],[4,6]],
 	[[4,9],[4,10]],
@@ -30,7 +30,16 @@
 	[[9,10],[9,9]]
 	];
 	
+	_.map(level.walls,function(eachList){
+		_.map(eachList, function(eachPoint){
+			eachPoint[0] *= 78;
+			eachPoint[1] *= 78;
+			});
+			});
+	
 	level.sensors = [new Sensors.ProximitySensor(), new Sensors.ProximitySensor()];
 	level.actuators = [];
-	
+    level.startPosition = {x:100, y:100};
+
+    level.endPosition = { x: 400, y: 400, width: 50, height: 50 };
 })();
