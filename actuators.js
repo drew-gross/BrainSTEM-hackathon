@@ -1,18 +1,18 @@
 (function() {
     window.Actuators = {};
 
-    var leftMotorNameCounter = 0;
+    var LeftMotorNameCounter = 0;
     var LeftMotor = Actuators.LeftMotor = function() {
         this.imageSrc = "img/motor_left.png";
-        this.name = "LeftMotor" + (leftMotorNameCounter++);
+        this.name = "LeftMotor" + (LeftMotorNameCounter++);
         this.type = "LeftMotor";
         this.state = 0;
     };
 	
-	var rightMotorNameCounter = 0;
+	var RightMotorNameCounter = 0;
     var RightMotor = Actuators.RightMotor = function() {
         this.imageSrc = "img/motor_right.png";
-        this.name = "RightMotor" + (rightMotorNameCounter++);
+        this.name = "RightMotor" + (RightMotorNameCounter++);
         this.type = "RightMotor";
         this.state = 0;
     };

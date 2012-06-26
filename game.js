@@ -97,10 +97,10 @@ var Robot = function(inputs, outputs){
                         out.actuator.state = value;
                     }
                 });
-                var motors = [];
+                var LeftMotors = [];
                 _.each(self.outputs, function (out) {
-                    if(out.actuator.type === 'Motor'){
-                        motors.push(
+                    if(out.actuator.type === 'LeftMotor'){
+                        LeftMotors.push(
                             {position: new Box2D.Common.Math.b2Vec2(
                                 (out.position.x+0.5)*self.w/4/PPM,
                                 (out.position.y+0.5)*self.h/4/PPM),
@@ -108,7 +108,19 @@ var Robot = function(inputs, outputs){
                                 0, out.actuator.state)});
                     }
                 });
-                makeAdjustments(this.body, motors);
+                makeAdjustments(this.body, LeftMotors);
+				var RightMotors = [];
+                _.each(self.outputs, function (out) {
+                    if(out.actuator.type === 'RightMotor'){
+                        RightMotors.push(
+                            {position: new Box2D.Common.Math.b2Vec2(
+                                (out.position.x+0.5)*self.w/4/PPM,
+                                (out.position.y+0.5)*self.h/4/PPM),
+                            target: new Box2D.Common.Math.b2Vec2(
+                                0, out.actuator.state)});
+                    }
+                });
+                makeAdjustments(this.body, RightMotors);
             }
         });
     var wGridToPixel = theRobot.w/4;
