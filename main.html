@@ -27,10 +27,10 @@
                 <div class="parts_list">
                     <table id="robot-parts">
                         <tr data-bind="foreach: sensors">
-							<td class="tool-box-cell"><img data-bind="attr: {id: name, src: imageSrc, dataSensor: $data}" class="robot-part input" /></td>
+							<td class="tool-box-cell"><img data-bind="attr: {id: name, src: imageSrc}, data: {sensor: $data}" class="robot-part input" /></td>
                         </tr>
 						<tr data-bind="foreach: actuators">
-							<td class="tool-box-cell"><img data-bind="attr: {id: name, src: imageSrc, dataActuator: $data}" class="robot-part output" /></td>
+							<td class="tool-box-cell"><img data-bind="attr: {id: name, src: imageSrc}, data: {actuator: $data}" class="robot-part output" /></td>
                         </tr>
                     </table>
                     <table class="grid" id="robot-design">
@@ -65,10 +65,9 @@
         <div class="clear"> <!--style="margin-top: 300px;"-->
             <button class="butthorn" id="run" type="button">Upload your code</button>
             <textarea id="usercode" cols="100" rows="50">if (inputs.lightsensor1 &gt; 50) {
-				outputs.motor1 = 0.1;
-				outputs.motor2 = 0.1;
-				/* jake sucks */
-			}</textarea>
+    outputs.motor1 = 0.1;
+    outputs.motor2 = 0.1;
+}</textarea>
         </div>
 	</div>
 </body>

@@ -23,7 +23,7 @@ $(function () {
         elems = $(".input").filter(isOnRobot);
         return _.map(elems,function (elem, key) {
             return {
-                        sensor:{},
+                        sensor:$(elem).data("sensor"),
                         position: getPosition(elem)
                    };
                    
@@ -34,7 +34,7 @@ $(function () {
         elems = $(".output").filter(isOnRobot);
         return _.map(elems, function (elem, key) {
             return {
-                        actuator:{},
+                        actuator:$(elem).data("actuator"),
                         position:getPosition(elem)
                    }
         });
@@ -45,13 +45,26 @@ $(function () {
 	    , syntax: "js"			// syntax to be uses for highgliting
 	    , start_highlight: true		// to display with highlight mode on start-up
     });
-	
+
+    //set up knockout stuff
+    ko.bindingHandlers.data = {
+        init: function (element, valueAccessor) {
+            var set = function (key, data) {
+                $(element).data(key, data);
+            };
+            var dict = valueAccessor();
+            _.each(dict, function (value, key) {
+                set(key, value);
+            });
+        }
+    };
 	var viewModel = function(){
 		this.sensors = window.Level1.sensors;
 		this.actuators = [];
 	};
 	ko.applyBindings(new viewModel());
 	
+    //build the things used by the engine and supplied by the user
     window.UserCode = {};
     UserCode.code = "";
     UserCode.inputs = [];
@@ -68,6 +81,7 @@ $(function () {
         UserCode.outputs = outputs();
         Game.running = true;
     });
+
     //set up the robot editor
     $("#droptarget").on("ondrop", function(ev){
         drop(ev);
