@@ -1,23 +1,26 @@
 $(function(){
-Crafty.init(500, 500);
+var PPM = 30; // Pixels per meter.
+Crafty.init(800, 800);
 Crafty.DrawManager.draw = Crafty.DrawManager.drawAll;
 Crafty.Box2D.init();
 Crafty.background('rgb(255,255,255)');
 
-var walls = [
-{x:250, y:500},
-{x:0, y:500},
-{x:0, y:0},
-{x:500, y:0},
-{x:500, y:500},
-{x:250, y:500},
-{x:250, y:150}
-];
 var level = window.Level1;
 
-_.each(walls, function(p,i){
-    Component.Wall(p, walls[(i+1)%walls.length]);
-});
+_.each(level.walls, function(pointlist,i){
+	_.each(pointlist, function(p,i){
+		var pointhelper = {};
+		var nextPointHelper = {};
+		if(i != pointlist.length-1){
+			nextPointHelper.x = pointlist[(i+1)][0]
+			nextPointHelper.y = pointlist[(i+1)][1]
+			pointhelper.x = p[0];
+			pointhelper.y = p[1];
+			Component.Wall(pointhelper,nextPointHelper);
+		}
+		});
+		});
+	
 
 var rToD = (360/(2*Math.PI));
 
