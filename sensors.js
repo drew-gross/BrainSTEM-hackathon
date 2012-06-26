@@ -52,8 +52,9 @@
             var rawList = robot.body.GetContactList();
             while(rawList){
                 var contact = rawList.contact;
-                if(contact.GetFixtureA() === sensor.fixture ||
-                    contact.GetFixtureB() === sensor.fixture){
+                if(contact.isTouching() && (
+                            contact.GetFixtureA() === sensor.fixture ||
+                            contact.GetFixtureB() === sensor.fixture)){
                         var id = rawList.other.GetUserData();
                         if(id){
                             collisions.push([Crafty(id),
