@@ -3,7 +3,7 @@
     var Wall = Component.Wall = function(p1,p2){
         var attrs = {
             name: 'Wall',
-            colour: 'Black'
+            sensor_color: 'Black'
         };
         if(p1.x === p2.x){
             var start = Math.min(p1.y, p2.y);
