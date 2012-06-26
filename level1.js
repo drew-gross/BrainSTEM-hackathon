@@ -18,5 +18,5 @@
 	level.sensors = [new Sensors.LightSensor(), new Sensors.ProximitySensor()];
 	level.actuators = [new Actuators.LeftMotor(), new Actuators.Laser(), new Actuators.RightMotor()];
 	level.startPosition = { x: 100, y: 100 };
-    level.endPosition = {x: 400, y: 400, width: 50, height: 50};
+    level.endPosition = {x: 100, y: 200, w: 50, h: 50};
 })();

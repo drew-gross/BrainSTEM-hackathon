@@ -20,7 +20,8 @@ _.each(level.walls, function(pointlist,i){
 		}
 		});
 		});
-	
+
+var goal = Component.Goal(level.endPosition);	
 
 var rToD = (360/(2*Math.PI));
 
@@ -109,6 +110,9 @@ var Robot = function(inputs, outputs){
                     }
                 });
                 makeAdjustments(this.body, RightMotors);
+                if (theRobot.intersect(goal)) {
+                    alert("winnar");
+                }
             }
         });
     var wGridToPixel = theRobot.w/4;
