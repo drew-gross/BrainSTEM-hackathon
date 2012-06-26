@@ -41,5 +41,5 @@
 	level.actuators = [new Actuators.LeftMotor(), new Actuators.RightMotor()];
     level.startPosition = {x:629, y:28};
     level.endPosition = { x: 700, y: 200, w: 50, h: 50 };
-    level.instructions = "#level2instructions"
+    level.instructions = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent congue lorem quis nulla pretium non auctor libero elementum. Phasellus tincidunt urna in neque auctor ac viverra eros feugiat. Curabitur dapibus risus dolor. Phasellus ultrices nisl vel massa mattis tempor quis eget nisi. Etiam pellentesque faucibus leo quis placerat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut lacinia sodales felis vel placerat. Donec sit amet neque eget metus luctus lobortis eu nec dui. Aliquam et tellus sed enim ullamcorper pulvinar ornare vitae magna. Quisque placerat magna in felis placerat interdum. Phasellus vel nulla justo, ac gravida nisl."
 })();
