@@ -47,7 +47,7 @@ $(function () {
     });
 	
 	var viewModel = function(){
-		this.sensors = [new Sensors.ProximitySensor(), new Sensors.ProximitySensor(), new Sensors.SoundSensor()];
+		this.sensors = window.Level1.sensors;
 		this.actuators = [];
 	};
 	ko.applyBindings(new viewModel());

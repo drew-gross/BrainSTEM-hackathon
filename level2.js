@@ -1,6 +1,6 @@
 (function(){
-	window.Level2 = {};
-	this.walls = [
+	var level = window.Level2 = {};
+	level.walls = [
 	[[0,10],[0,0],[9,0],[9,2]],
 	[[0,1],[1,1]],
 	[[0,3],[2,3]],
@@ -30,6 +30,7 @@
 	[[9,10],[9,9]]
 	];
 	
-	this.sensors = [new Sensors.ProximitySensor(), new Sensors.ProximitySensor()];
+	level.sensors = [new Sensors.ProximitySensor(), new Sensors.ProximitySensor()];
+	level.actuators = [];
 	
 })();

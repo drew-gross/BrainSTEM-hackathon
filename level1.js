@@ -6,5 +6,6 @@
 	[[0,3],[2,3],[2,1],[5,1],[5,3]]
 	];
 	level.sensors = [new Sensors.LightSensor(), new Sensors.ProximitySensor()];
+	level.actuators = [];
 	
 })();
