@@ -1,7 +1,7 @@
 (function(){
 	var level = window.Demo1 = {};
 	level.walls = [
-	[[4,0],[6,0],[6,8],[4,8],[4,0]]
+	[[4,0],[6,0],[6,6],[4,6],[4,0]]
 	];
 	
 	_.map(level.walls,function(eachList){
@@ -14,6 +14,6 @@
 	level.sensors = [];
 	level.actuators = [new Actuators.LeftMotor(), new Actuators.RightMotor()];
 	level.startPosition = { x: 380, y: 40 };
-    level.endPosition = {x: 4*80 + 10, y: 7*80, w: 140, h: 70};
+    level.endPosition = {x: 4 * 80 + 10, y: 5 * 80, w: 140, h: 70};
     level.instructions = ""
 })();
