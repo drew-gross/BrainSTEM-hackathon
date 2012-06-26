@@ -28,5 +28,17 @@
             .color('rgb(0,0,0)')
             .attr(attrs);
     };
+    var Goal = Component.Goal = function(dimensions) {
+        var attrs = {
+            name: 'Goal',
+            x:dimensions.x, 
+            y:dimensions.y,
+            w:dimensions.w,
+            h:dimensions.h
+        };
+        return Crafty.e("Goal, Canvas, 2D, Color")
+        .attr(attrs)
+        .color("rgb(0,100,0)");
+    };
 
 })();

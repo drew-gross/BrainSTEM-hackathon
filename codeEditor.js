@@ -61,13 +61,14 @@ $(function () {
     UserCode.code = "";
     UserCode.inputs = [];
     UserCode.outputs = [];
-    UserCode.run = function(inputs){
+    UserCode.run = function(inputs, memory){
         try {
             var outputs = {};
             eval(UserCode.code);
             return outputs;
         } catch(err){
-			confirm(err);
+	    confirm(err);
+            Game.running = false;
             // TODO: Display the error to the user.
             return {};
         }

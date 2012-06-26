@@ -20,7 +20,8 @@ _.each(level.walls, function(pointlist,i){
 		}
 		});
 		});
-	
+
+var goal = Component.Goal(level.endPosition);	
 
 var rToD = (360/(2*Math.PI));
 
@@ -47,7 +48,7 @@ var makeAdjustments = function(body, engines){
 var Robot = function(inputs, outputs){
     var theRobot =  Crafty.e("Canvas, Box2D, DrawPolygon")
         .attr({x: level.startPosition.x, y: level.startPosition.y, w: 40, h: 40, type:"dynamic",
-            leftMotor: 0, rightMotor: 0,
+            leftMotor: 0, rightMotor: 0, memory: {},
             draw_polygons:[
             [[00,00],[10,00],[10,10],[00,10]],
             [[00,10],[10,10],[10,20],[00,20]],
@@ -76,7 +77,7 @@ var Robot = function(inputs, outputs){
                     inputs[input.name] =
                     input.state;
                 });
-                var outputs = UserCode.run(inputs);
+                var outputs = UserCode.run(inputs, this.memory);
                 _.each(outputs,function(value, key){
                     var out = _.find(self.outputs, function(out){
                         return out.object.name === key;
@@ -109,6 +110,9 @@ var Robot = function(inputs, outputs){
                     }
                 });
                 makeAdjustments(this.body, RightMotors);
+                if (theRobot.intersect(goal)) {
+                    alert("winnar");
+                }
             }
         });
     var wGridToPixel = theRobot.w/4;
