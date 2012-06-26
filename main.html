@@ -29,7 +29,12 @@
                 <div class="parts_list">
                     <table id="robot-parts">
                         <tr data-bind="foreach: sensors">
-							<td class="tool-box-cell"><img data-bind="attr: {id: name, src: imageSrc}, data: {sensor: $data}" class="robot-part input" /></td>
+							<td class="tool-box-cell">
+								<div>
+									<img data-bind="attr: {id: name, src: imageSrc}, data: {sensor: $data}" class="robot-part input" />
+									hello
+								</div>
+						    </td>
                         </tr>
 						<tr data-bind="foreach: actuators">
 							<td class="tool-box-cell"><img data-bind="attr: {id: name, src: imageSrc}, data: {actuator: $data}" class="robot-part output" /></td>
@@ -66,9 +71,9 @@
         </div>
         <div class="clear"> <!--style="margin-top: 300px;"-->
             <button class="butthorn" id="run" type="button">Upload your code</button>
-            <textarea id="usercode" cols="100" rows="12">if (inputs.lightsensor1 &gt; 50) {
-    outputs.motor1 = 0.1;
-    outputs.motor2 = 0.1;
+            <textarea id="usercode" cols="100" rows="12">if (inputs.LightSensor0 &gt; 50) {
+    outputs.Motor0 = 0.1;
+    outputs.Motor1 = 0.1;
 }</textarea>
         </div>
 	</div>
