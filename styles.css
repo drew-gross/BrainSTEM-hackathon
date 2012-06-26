@@ -109,6 +109,7 @@ img.robot-part{
 {
     width:800px;
     text-indent:50px;
+    margin-bottom:0 !important;
 }
 code{
      display: block;
