@@ -71,6 +71,15 @@ var Robot = function(sensors, motors){
                     sensor.sensor.sensor.state;
                 });
                 var outputs = UserCode.run(inputs);
+                var outputMotors = _.filter(UserCode.outputs, function(output){
+                    return output.actuator.type === "Motor"
+                });
+                var actuatedOutputMotors = _.filter(outputMotors, function(motor){
+                    return (_.keys(outputs).indexOf(motor.actuator.name) != -1);
+                });
+                _.each(actuatedOutputMotors, function (motor) {
+                    motor.actuator.state = outputs[motor.actuator.name];
+                });
                 var motors = [
                 {position: new Box2D.Common.Math.b2Vec2(0,this.h/2/PPM),
                     target: new Box2D.Common.Math.b2Vec2(0,outputs.motor1)},

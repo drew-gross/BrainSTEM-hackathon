@@ -60,7 +60,7 @@ $(function () {
     };
 	var viewModel = function(){
 		this.sensors = window.Level1.sensors;
-		this.actuators = [];
+		this.actuators = window.Level1.actuators;
 	};
 	ko.applyBindings(new viewModel());
 	
