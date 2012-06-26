@@ -85,7 +85,7 @@ $(function () {
     $("#droptarget").on("ondrop", function(ev){
         drop(ev);
     });
-    $(".robot-part").draggable({ revert: "invalid", snap: ".robot-cell, .tool-box-cell", snapMode: "inner" });
+    $(".robot-part").draggable({ revert: "invalid"/*, snap: ".robot-cell, .tool-box-cell", snapMode: "inner" */});
     $(".robot-cell").droppable({ 
         accept: ".robot-part",
         drop: function (event, ui) {

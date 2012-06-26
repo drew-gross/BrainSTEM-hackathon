@@ -98,7 +98,8 @@
 		this.imageSrc = "img/touch_sensor.png";
 		this.name = "ProximitySensor" + (proxNameCounter++);
 		this.state = "Off";
-		this.update = function(touchList){
+		this.update = function(robot){
+                        var touchList = collisions(robot, this);
 			//Make sure that we're only looking at objects that are coloured panels.
 			var filteredList = _.filter(touchList,function(x){return(x[0].name === "Wall")});
 	
@@ -107,6 +108,9 @@
 			}
 		}
 
+        this.attach = function(robot, position){
+            attachHitSensor(robot, this, position);
+        };
         this.points = makeArc(3, Math.PI, 5);
         this.helptext = this.name + ". Use this sensor by reading inputs." + this.name + ", the value will be 'On' or 'Off'";
 	};
@@ -136,7 +140,8 @@
 		this.imageSrc = "img/soundsensor.bmp";
 		this.name = "SoundSensor" + (soundNameCounter++);
 		this.state = 1000;
-		this.update = function(touchList){
+		this.update = function(robot){
+                        var touchList = collisions(robot, this);
 			this.state = 1000;
 			//Make sure that we're only looking at objects that are coloured panels.
 			var filteredList = _.filter(touchList,function(x){return(x[0].name === "Speaker")});
@@ -152,6 +157,9 @@
 			//you'd expect to hear from the speaker
 			this.state = 1/(this.state * this.state);
 		}
+        this.attach = function(robot, position){
+            attachHitSensor(robot, this, position);
+        };
         this.points = makeCircle(500, 50);
         this.helptext = this.name + ". Use this sensor by reading inputs." + this.name + ", the value will be a number";
 	};
