@@ -38,7 +38,7 @@
         };
         return Crafty.e("Goal, Canvas, 2D, Color")
         .attr(attrs)
-        .color("rgb(0,100,0)");
+        .color("rgba(99,255,99,0.7)");
     };
 
 })();
