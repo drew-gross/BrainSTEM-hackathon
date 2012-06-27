@@ -44,13 +44,19 @@ $(function () {
             $(".robot-cell").droppable({
                 accept: ".robot-part",
                 drop: function (event, ui) {
-                    ui.draggable.data("object").position(getPosition(this.id));
+					var $item = ui.draggable;
+					$item.appendTo( this );
+					$item.css( {"left":"", "top":"", "bottom":"", "right":"" }).fadeIn();
+                    $item.data("object").position(getPosition(this.id));
                 }
             });
             $(".tool-box-cell").droppable({
                 accept: ".robot-part",
                 drop: function (event, ui) {
-                    ui.draggable.data("object").position(null);
+					var $item = ui.draggable;
+					$item.appendTo( this );
+					$item.css( {"left":"", "top":"", "bottom":"", "right":"" }).fadeIn();
+                    $item.data("object").position(null);
                 }
             });
         });
