@@ -31,9 +31,6 @@
 	<div class="content">
 		<img class="logo" src="PI_hackathon\ropuzzle_700.png" />
         <div id="instructions" class="gray_box"></div>
-        <div id="cr-stage-container" class="gray_box">
-            <div id="cr-stage"></div>
-        </div>
         <div class="parts_list">
             <div class="gray_box">
                 <h3>Part List</h3>
@@ -58,7 +55,7 @@
             </div>
             <div class="gray_box">
                 <h3>Your Robot</h3>
-                <table class="grid" id="robot-design">
+                <table id="robot-design">
                     <tr class="robot-cell-row">
                         <td id="robot-0" class="robot-cell"></td>
                         <td id="robot-1" class="robot-cell"></td>
@@ -85,6 +82,9 @@
                     </tr>
                 </table>
             </div>  
+            <div class="gray_box">
+                <img class="butthorn" id="run" type="button" src="PI_hackathon\upload_button.png"/>
+            </div>
             <div id="help" class="gray_box">
                 <h3>Attached Parts</h3>
                 <ul data-bind="foreach: selectedObjects" >
@@ -92,13 +92,11 @@
                 </ul> 
             </div>
         </div>
-        <div class="clear"> <!--style="margin-top: 300px;"-->
-            <img class="butthorn" id="run" type="button" src="PI_hackathon\upload_button.png"/>
-		</div>
-
+        <div id="cr-stage-container" class="gray_box">
+            <div id="cr-stage"></div>
+        </div>
 		<div class="sextarea">
-			<textarea id="usercode" cols="100" rows="30">
-
+			<textarea id="usercode" cols="85" rows="30">
 if(inputs.ProximitySensor2 === "Black"){
 	outputs.LeftMotor1 = 0.5;
 	outputs.RightMotor1 = -0.5;

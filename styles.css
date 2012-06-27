@@ -32,16 +32,13 @@ img.logo{
 {
 	margin-left: 50px;
 	float: left;
+	margin-bottom:0 !important;
 }
 
 .parts_list{
 	float: right;
 	padding-right: 50px;
 	width: 350px;
-}
-
-.clear{
-	clear: both;
 }
 
 .butthorn{
@@ -51,18 +48,11 @@ img.logo{
 
 .sextarea{
 	padding-left: 50px;
-	padding-top: 15px;
-}
-
-.grid{
-	/*float: right;*/
 }
 
 .robot-part-descriptor{
 	margin:0;
 }
-
-
 
 h1 {
     font-size: 15px;
@@ -119,7 +109,7 @@ code{
      background: transparent;
      border: 1px solid #bebab0;
 }
-.gray_box
+.gray_box, iframe
 {
     margin-left:auto;
     margin-right:auto;
