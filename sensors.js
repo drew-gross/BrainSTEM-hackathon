@@ -133,7 +133,7 @@
         this.attach = function(robot, position){
             attachHitSensor(robot, this, position);
         };
-        this.points = makeArc(10, Math.PI*2/3, 5);
+        this.points = makeArc(14, Math.PI*2/3, 5);
         this.helptext = this.name + ". Use this sensor by reading inputs." + this.name + ", the value will be 'On' or 'Off' depending \
 		on whether your robot has collided with a wall";
 	};
