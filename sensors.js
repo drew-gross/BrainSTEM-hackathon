@@ -134,7 +134,7 @@
         this.attach = function(robot, position){
             attachHitSensor(robot, this, position);
         };
-        this.points = makeArc(10, Math.PI * 2 / 3, 5);
+        this.points = makeArc(14, Math.PI*2/3, 5);
         this.title = "inputs." + this.name;
         this.usage = "Returns 'On' or 'Off'"
 	};
