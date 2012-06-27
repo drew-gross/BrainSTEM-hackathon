@@ -1,5 +1,5 @@
 $(function () {
-
+    
     //helper functions
     var getPosition = function (id) {
         var indexRegex = /robot-(\d+)/g;
@@ -31,7 +31,8 @@ $(function () {
         }
     };
 
-	var viewModel = {};
+    var viewModel;
+	window.ViewModel = viewModel = {};
     viewModel.level = ko.observable();
     viewModel.level.subscribe(function (lvl) {
         Game.loadLevel(lvl);
@@ -61,7 +62,8 @@ $(function () {
             });
         });
     });
-    viewModel.level(window.Level1);
+    viewModel.currentLevel = 0;
+    viewModel.level(Game.levels[viewModel.currentLevel]);
     viewModel.sensors = ko.computed(function(){
         return _.collect(viewModel.level().sensors, function (sensor) {
             return { object: sensor, position: ko.observable(null) };
@@ -119,7 +121,14 @@ $(function () {
     //level management
     $("#instructions").html(viewModel.level().instructions);
     $("body").on("click", "#next-level", function () {
-        viewModel.level(window.Level2);
-        $.fancybox.close();
+        viewModel.currentLevel++;
+        if (Game.levels.length != viewModel.currentLevel) {
+            $(".robot-cell, .tool-box-cell").html("");
+            viewModel.level(Game.levels[viewModel.currentLevel]);
+            $.fancybox.close();
+        } else {
+            var victoryHtml = '<div id="victory-screen">Congratulations! You beat the whole game!</div>'
+            $("#victory-screen").html(victoryHtml);
+        }
     });
 });

@@ -1,7 +1,8 @@
 (function(){
 var PPM = 30; // Pixels per meter.
 
-window.Game = {}
+Game = window.Game = {}
+Game.levels = [window.Demo1, window.Demo2, window.Demo3, window.Demo4, window.Level1, window.Level2];
 var goal;
 var level;
 

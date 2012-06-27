@@ -57,7 +57,7 @@ img.logo{
 }
 
 .robot-part-descriptor{
-	margin:0;
+	margin:-4px;
 }
 
 h1 {
@@ -123,6 +123,10 @@ code{
      line-height: 1.25;
      background: transparent;
      border: 1px solid #bebab0;
+}
+#usercode
+{
+    width:694px;
 }
 .gray_box, iframe
 {
