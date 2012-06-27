@@ -15,5 +15,5 @@
 	level.actuators = [new Actuators.LeftMotor("LeftMotor"), new Actuators.RightMotor("RightMotor")];
 	level.startPosition = { x: 380, y: 400 };
     level.endPosition = {x: 4 * 80 + 10, y: 10, w: 140, h: 70};
-    level.instructions = "<p>Motors can also run in reverse. Try setting the motor speeds to a negative value and see what happens.</p>";
+    level.instructions = "Motors can also run in reverse. Try setting the motor speeds to a negative value and see what happens.";
 })();
