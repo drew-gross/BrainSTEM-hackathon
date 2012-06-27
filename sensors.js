@@ -100,10 +100,11 @@
 		this.name = "GyroSensor" + (gyroNameCounter++);
 		this.state = 0;
 		this.update = function(robot){
-                    this.state = ((robot.rotation % 360) + 360) % 360;
+                    this.state = (robot.rotation + 720) % 360;
 		}	
         this.attach = function(robot, position){
             // Nothing to do here.
+			// http://i3.kym-cdn.com/entries/icons/original/000/006/707/nothing-to-do-here-template.jpg.scaled500.jpg
         }
         this.helptext = this.name + ". Use this sensor by reading inputs." + this.name + ", the value a number between 0 and 360 exclusively, where 0 means pointing down.";
 	};
@@ -131,7 +132,6 @@
         this.attach = function(robot, position){
             attachHitSensor(robot, this, position);
         };
-		//I know, I know, magic numbers are bad.
         this.points = makeArc(10, Math.PI*2/3, 5);
         this.helptext = this.name + ". Use this sensor by reading inputs." + this.name + ", the value will be 'On' or 'Off'";
 	};
