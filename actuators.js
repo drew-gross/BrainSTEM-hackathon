@@ -7,7 +7,8 @@
         this.name = nme;
         this.type = "LeftMotor";
         this.state = 0;
-        this.helptext = this.name + ". Use this motor by setting outputs." + this.name + " to any number.";
+        this.title = "outputs." + this.name;
+        this.usage = "Assign a speed to the motor."
     };
 	
 	var RightMotorNameCounter = 0;
@@ -16,7 +17,8 @@
         this.name = nme;
         this.type = "RightMotor";
         this.state = 0;
-        this.helptext = this.name + ". Use this motor by setting outputs." + this.name + " to any number.";
+        this.title = "outputs." + this.name;
+        this.usage = "Assign a speed to the motor."
     };
 
     var laserNameCounter = 0;
@@ -25,6 +27,7 @@
         this.name = "Laser" + (laserNameCounter++);
         this.state = 0;
         this.type = "Laser";
-        this.helptext = this.name + ". Use this laser by setting outputs." + this.name  + " to any number.";
+        this.title = "outputs." + this.name;
+        this.usage = "Power the laser";
     };
 })();

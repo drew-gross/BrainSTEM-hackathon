@@ -116,13 +116,14 @@ img.robot-part{
     text-indent:50px;
     margin-bottom:0 !important;
 }
-code{
+code, .helptext{
      display: block;
      padding: 0.5em 1em;
      color: #000;
      line-height: 1.25;
      background: transparent;
      border: 1px solid #bebab0;
+     margin:10px 0;
 }
 #usercode
 {

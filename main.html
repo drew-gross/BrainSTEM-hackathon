@@ -87,9 +87,9 @@
             </div>
             <div id="help" class="gray_box">
                 <h3 class="heading">Attached Parts</h3>
-                <ul data-bind="foreach: selectedObjects" >
-                    <li data-bind="text: object.helptext"></li>
-                </ul> 
+                <div data-bind="foreach: selectedObjects" >
+                        <code data-bind="text: object.title + '\n' + object.usage"></code>
+                </div> 
             </div>
         </div>
         <div id="cr-stage-container" class="gray_box">
