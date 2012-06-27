@@ -89,7 +89,7 @@
                 this.attach = function(robot, position){
                     attachHitSensor(robot, this, position);
                 }
-        this.points = makeArc(30, Math.PI / 3, 30);
+        this.points = makeArc(8, Math.PI / 3, 30);
         this.helptext = this.name + ". Use this sensor by reading inputs." + this.name + ", the value will be, 'Black', \
 		'White', or the color of a panel that your robot hits.";
 	};
