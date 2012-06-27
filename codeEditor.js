@@ -1,5 +1,5 @@
 $(function () {
-
+    
     //helper functions
     var getPosition = function (id) {
         var indexRegex = /robot-(\d+)/g;
@@ -31,7 +31,8 @@ $(function () {
         }
     };
 
-	var viewModel = {};
+    var viewModel;
+	window.ViewModel = viewModel = {};
     viewModel.level = ko.observable();
     viewModel.level.subscribe(function (lvl) {
         Game.loadLevel(lvl);
@@ -122,6 +123,7 @@ $(function () {
     $("body").on("click", "#next-level", function () {
         viewModel.currentLevel++;
         if (Game.levels.length != viewModel.currentLevel) {
+            $(".robot-cell, .tool-box-cell").html("");
             viewModel.level(Game.levels[viewModel.currentLevel]);
             $.fancybox.close();
         } else {
