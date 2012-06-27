@@ -117,7 +117,6 @@ var Robot = function(inputs, outputs){
                                 0, out.object.state)});
                     }
                 });
-                makeAdjustments(this.body, LeftMotors);
 				var RightMotors = [];
                 _.each(self.outputs, function (out) {
                     if(out.object.type === 'RightMotor'){
@@ -129,7 +128,7 @@ var Robot = function(inputs, outputs){
                                 0, out.object.state)});
                     }
                 });
-                makeAdjustments(this.body, RightMotors);
+                makeAdjustments(this.body, LeftMotors.concat(RightMotors));
                 if (theRobot.intersect(goal)) {
                     Game.running = false;
                     var victoryHtml = '<div id="victory-screen">Congratulations!<p><button id="next-level">Next level</button></p></div>'
@@ -156,5 +155,5 @@ Game.resetRobot = function() {
     }, 50);
 };
 
-loadLevel(window.Demo4);
+loadLevel(window.Demo3);
 });
