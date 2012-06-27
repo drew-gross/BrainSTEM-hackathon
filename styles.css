@@ -3,7 +3,9 @@ html{
 }
 
 body{
-	background-color: rgba(0, 80, 66, 1);
+	/*background-color: rgba(0, 80, 66, 0.9);*/
+	background-image: url('old_mathematics.png');
+	background-repeat: repeat;
 	font:13px/1.5 'Helvetica Neue',Arial,'Liberation Sans',FreeSans,sans-serif;
 	margin-right:0;
 	margin-left:0;
@@ -12,7 +14,11 @@ body{
 }
 
 .content{
-	background-color: #FFFFFF;
+	
+    /*background-color: rgba(0, 80, 66, 0.5);
+
+	background-image: 'PI_hackathon\old_mathematics.png';
+	background-repeat: repeat;
 	/*margin-top: 1cm;*/
 }
 

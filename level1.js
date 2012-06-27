@@ -1,7 +1,7 @@
 (function(){
 	var level = window.Level1 = {};
-	var xTranslate = 100;
-	var yTranslate = 80;
+	var xTranslate = 0;
+	var yTranslate = 180;
 	
 	level.walls = [
 	[[0,0], [3,0], [3,2], [4,2], [4,0], [6,0], [6,4], [1,4], [1,2]],
@@ -10,10 +10,10 @@
 	];
 
     level.panels = [
-        [[10 + xTranslate,84 + yTranslate],[10 + xTranslate,156 + yTranslate], 'Red'],
-        [[84 + xTranslate,84 + yTranslate],[162 + xTranslate,84 + yTranslate], 'Red'],
-        [[170 + xTranslate,224 + yTranslate],[240 + xTranslate,224 + yTranslate], 'Red'],
-        [[390 + xTranslate,164 + yTranslate],[390 + xTranslate,236 + yTranslate], 'Red']
+        [[84 + yTranslate + 6, 10 + xTranslate - 6],[156 + yTranslate + 6, 10 + xTranslate - 6], 'Red'],
+        [[84 + yTranslate + 6, 84 + xTranslate - 6],[84 + yTranslate + 6, 162 + xTranslate - 6], 'Red'],
+        [[224 + yTranslate + 6,170 + xTranslate - 6],[224 + yTranslate + 6,240 + xTranslate - 6], 'Red'],
+        [[164 + yTranslate + 6, 390 + xTranslate - 6],[236 + yTranslate + 6, 390 + xTranslate - 6], 'Red']
     ];
 	
 	_.each(level.walls,function(eachList){
@@ -22,14 +22,24 @@
 			eachPoint[0] += xTranslate;
 			eachPoint[1] *= 80;
 			eachPoint[1] += yTranslate;
+			
+			var hackySwitch = eachPoint[0];
+			eachPoint[0] = eachPoint[1];
+			eachPoint[1] = hackySwitch;
 			});
 			});
 	
 	level.sensors = [new Sensors.ProximitySensor(), new Sensors.GyroSensor(),
             new Sensors.LightSensor()];
 	level.actuators = [new Actuators.LeftMotor(), new Actuators.RightMotor()];
+//drews version
 	level.startPosition = { x: 20 + xTranslate, y: 200  + yTranslate};
     level.endPosition = {x: 10 + xTranslate, y: 250 + yTranslate, w: 60, h: 60};
+// normal version
+/*
+	level.startPosition = { x: 20  + yTranslate, y: 20 + xTranslate};
+    level.endPosition = {x: 250 + yTranslate, y: 10 + xTranslate, w: 60, h: 60};
+*/
     level.instructions = "<p>Using what you know about gyroscopes and light sensors, \
-	have your robot traverse the colour-marked passage to get to the goal zone.</p>";
+	have your robot traverse the colour-marked passage to get to the goal.</p>";
 })();
