@@ -138,7 +138,7 @@ var Robot = function(inputs, outputs){
                 makeAdjustments(this.body, LeftMotors.concat(RightMotors));
                 if (theRobot.intersect(goal)) {
                     Game.running = false;
-                    var victoryHtml = '<div id="victory-screen">Congratulations!<p><img src="PI_hackathon\victory_button.png" id="next-level"/></p></div>'
+                    var victoryHtml = '<div id="victory-screen">Congratulations!<p><img src="PI_hackathon/victory_button.png" id="next-level"/></p></div>'
                     $.fancybox(victoryHtml);
                 }
             }
