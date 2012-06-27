@@ -38,7 +38,7 @@
 						<td class="tool-box-cell">
 							<div class="robot-part" data-bind="data: {object: $data}" >
 								<img data-bind="attr: {id: object.name, src: object.imageSrc}" class="input" />
-								<p class="robot-part-descriptor" data-bind="text: 'Sensor ' + object.name[object.name.length-1]"></p>
+								<p class="robot-part-descriptor" data-bind="text: object.name"></p>
 							</div>
 						</td>
                     </tr>
@@ -46,11 +46,12 @@
 						<td class="tool-box-cell">
 							<div class="robot-part" data-bind="data: {object: $data}">
 								<img data-bind="attr: {id: object.name, src: object.imageSrc}" class="output" />
-								<p class="robot-part-descriptor" data-bind="text: 'Motor ' + object.name[object.name.length-1]"></p>
+								<p class="robot-part-descriptor" data-bind="text: object.name"></p>
 							</div>
 						</td>
                     </tr>
                 </table>
+				<p class="component-instructions"> Drag the components onto the grid below to add them to your robot</p>
             </div>
             <div class="gray_box">
                 <h3>Your Robot</h3>
@@ -106,7 +107,7 @@ if(memory.initialized === undefined)
 
 //The code below this line will be
 //evaluated over and over again.
-//e.g. output.Motor0 = 1.0;
+//e.g. outputs.RightMotor = 1.0;
 			</textarea>
 		</div>
 	</div>

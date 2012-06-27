@@ -12,8 +12,8 @@
 			});
 			});
 			
-	level.sensors = [new Sensors.ProximitySensor()];
-	level.actuators = [new Actuators.LeftMotor(), new Actuators.RightMotor()];
+	level.sensors = [new Sensors.ProximitySensor("ProxSensor")];
+	level.actuators = [new Actuators.LeftMotor("LeftMotor"), new Actuators.RightMotor("RightMotor")];
 	level.startPosition = { x: 460, y: 30 };
     level.endPosition = {x: 3 * 80 + 10, y: 10, w: 140, h: 70};
     level.instructions = "This level makes it necesarry to avoid hitting \
