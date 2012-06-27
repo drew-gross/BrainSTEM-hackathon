@@ -30,14 +30,42 @@ $(function () {
             });
         }
     };
-	var viewModel = {
-		sensors: _.collect(window.level.sensors, function(sensor){
-            return {object:sensor, position:ko.observable(null)};
-        }),
-        actuators: _.collect(window.level.actuators, function (actuator) {
-            return {object:actuator, position: ko.observable(null) };
-        })
-	};
+
+	var viewModel = {};
+    viewModel.level = ko.observable();
+    viewModel.level.subscribe(function (lvl) {
+        Game.loadLevel(lvl);
+        //set up the robot editor
+        _.defer(function(){ // allow ko to update the DOM
+            $("#droptarget").on("ondrop", function (ev) {
+                drop(ev);
+            });
+            $(".robot-part").draggable({ revert: "invalid", snap: ".robot-cell, .tool-box-cell", snapMode: "inner", snapTolerance: 40 });
+            $(".robot-cell").droppable({
+                accept: ".robot-part",
+                drop: function (event, ui) {
+                    ui.draggable.data("object").position(getPosition(this.id));
+                }
+            });
+            $(".tool-box-cell").droppable({
+                accept: ".robot-part",
+                drop: function (event, ui) {
+                    ui.draggable.data("object").position(null);
+                }
+            });
+        });
+    });
+    viewModel.level(window.Level1);
+    viewModel.sensors = ko.computed(function(){
+        return _.collect(viewModel.level().sensors, function (sensor) {
+            return { object: sensor, position: ko.observable(null) };
+        });
+    });
+    viewModel.actuators = ko.computed(function () {
+        return _.collect(viewModel.level().actuators, function (actuator) {
+            return { object: actuator, position: ko.observable(null) };
+        });
+    });
     var filterselected = function(objects){
         return _.filter(_.collect(objects, function (object) {
             return { object: object.object, position: object.position() };
@@ -46,10 +74,10 @@ $(function () {
         });
     };
     viewModel.selectedActuators = ko.computed(function () {
-        return filterselected(viewModel.actuators);
+        return filterselected(viewModel.actuators());
     });
     viewModel.selectedSensors = ko.computed(function () {
-        return filterselected(viewModel.sensors);
+        return filterselected(viewModel.sensors());
     });
     viewModel.selectedObjects = ko.computed(function(){
         return viewModel.selectedActuators().concat(viewModel.selectedSensors());
@@ -81,28 +109,11 @@ $(function () {
         Game.running = true;
         Game.resetRobot();
     });
-
-    //set up the robot editor
-    $("#droptarget").on("ondrop", function(ev){
-        drop(ev);
-    });
-    $(".robot-part").draggable({ revert: "invalid", snap: ".robot-cell, .tool-box-cell", snapMode: "inner", snapTolerance:40});
-    $(".robot-cell").droppable({ 
-        accept: ".robot-part",
-        drop: function (event, ui) {
-            ui.draggable.data("object").position(getPosition(this.id));
-        }
-    });
-    $(".tool-box-cell").droppable({ 
-        accept: ".robot-part",
-        drop: function (event, ui) {
-            ui.draggable.data("object").position(null);
-        }
-    });
-
+    
     //level management
-    $("#instructions").html(window.level.instructions);
+    $("#instructions").html(viewModel.level().instructions);
     $("body").on("click", "#next-level", function () {
-        alert("nect!");
+        viewModel.level(window.Level2);
+        $.fancybox.close();
     });
 });
