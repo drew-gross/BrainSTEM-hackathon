@@ -28,11 +28,11 @@
 </head>
 <body>
 	<div class="content">
-		<img class="logo" src="PI_hackathon\ropuzzle_700.png" />
+		<img class="logo" src="PI_hackathon\name_700.png" />
         <div id="instructions" class="gray_box"></div>
         <div class="parts_list">
             <div class="gray_box">
-                <h3>Part List</h3>
+                <h3 class="heading">Part List</h3>
                 <table id="robot-parts">
                     <tr data-bind="foreach: sensors">
 						<td class="tool-box-cell">
@@ -54,7 +54,7 @@
 				<p class="component-instructions"> Drag the components onto the grid below to add them to your robot</p>
             </div>
             <div class="gray_box">
-                <h3>Your Robot</h3>
+                <h3 class="heading">Your Robot</h3>
                 <table id="robot-design">
                     <tr class="robot-cell-row">
                         <td id="robot-0" class="robot-cell"></td>
@@ -86,7 +86,7 @@
                 <img class="butthorn" id="run" type="button" src="PI_hackathon\upload_button.png"/>
             </div>
             <div id="help" class="gray_box">
-                <h3>Attached Parts</h3>
+                <h3 class="heading">Attached Parts</h3>
                 <ul data-bind="foreach: selectedObjects" >
                     <li data-bind="text: object.helptext"></li>
                 </ul> 

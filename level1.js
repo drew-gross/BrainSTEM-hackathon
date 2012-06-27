@@ -30,7 +30,7 @@
 			});
 	
 	level.sensors = [new Sensors.ProximitySensor("ProxSensor"), new Sensors.GyroSensor("Compass"),
-            new Sensors.LightSensor("LightSensor")];
+            new Sensors.LightSensor("ColorSensor")];
 	level.actuators = [new Actuators.LeftMotor("LeftMotor"), new Actuators.RightMotor("RightMotor")];
 
 	level.startPosition = { x: 20  + yTranslate, y: 20 + xTranslate};
