@@ -115,6 +115,10 @@ code{
      background: transparent;
      border: 1px solid #bebab0;
 }
+#usercode
+{
+    width:694px;
+}
 .gray_box, iframe
 {
     margin-left:auto;
