@@ -122,13 +122,8 @@ $(function () {
     $("#instructions").html(viewModel.level().instructions);
     $("body").on("click", "#next-level", function () {
         viewModel.currentLevel++;
-        if (Game.levels.length != viewModel.currentLevel) {
-            $(".robot-cell, .tool-box-cell").html("");
-            viewModel.level(Game.levels[viewModel.currentLevel]);
-            $.fancybox.close();
-        } else {
-            var victoryHtml = '<div id="victory-screen">Congratulations! You beat the whole game!</div>'
-            $("#victory-screen").html(victoryHtml);
-        }
+        $(".robot-cell, .tool-box-cell").html("");
+        viewModel.level(Game.levels[viewModel.currentLevel]);
+        $.fancybox.close();
     });
 });
