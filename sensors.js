@@ -90,7 +90,8 @@
                     attachHitSensor(robot, this, position);
                 }
         this.points = makeArc(30, Math.PI / 3, 30);
-        this.helptext = this.name + ". Use this sensor by reading inputs." + this.name + ", the value will be 'Nothing', 'Black', 'White', or the color of the panel.";
+        this.helptext = this.name + ". Use this sensor by reading inputs." + this.name + ", the value will be, 'Black', \
+		'White', or the color of a panel that your robot hits.";
 	};
 	LightSensor.states = ["Nothing", "Black", "White"];
 	
@@ -106,7 +107,7 @@
             // Nothing to do here.
 			// http://i3.kym-cdn.com/entries/icons/original/000/006/707/nothing-to-do-here-template.jpg.scaled500.jpg
         }
-        this.helptext = this.name + ". Use this sensor by reading inputs." + this.name + ", the value a number between 0 and 360 exclusively, where 0 means pointing down.";
+        this.helptext = this.name + ". Use this sensor by reading inputs." + this.name + ", the value a number between 0 and 360 increasing clockwise, where 0 means pointing down.";
 	};
 	GyroSensor.states = [];
 	
@@ -133,7 +134,8 @@
             attachHitSensor(robot, this, position);
         };
         this.points = makeArc(10, Math.PI*2/3, 5);
-        this.helptext = this.name + ". Use this sensor by reading inputs." + this.name + ", the value will be 'On' or 'Off'";
+        this.helptext = this.name + ". Use this sensor by reading inputs." + this.name + ", the value will be 'On' or 'Off' depending \
+		on whether your robot has collided with a wall";
 	};
 	ProximitySensor.states = ["Off", "On"];
 	
