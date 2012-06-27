@@ -93,6 +93,10 @@ a:visited {
 	vertical-align: center;
 }
 
+.component-instructions{
+	margin-top:8px!important;
+}
+
 img.robot-part{
 	vertical-align: center;
 }

@@ -69,9 +69,9 @@
         };
 	
 	var lightNameCounter = 0;
-	var LightSensor = Sensors.LightSensor = function(){
-		this.imageSrc = "img/lightsensor.bmp";
-		this.name = "LightSensor" + (lightNameCounter++);
+	var LightSensor = Sensors.LightSensor = function(nme){
+		this.imageSrc = "PI_hackathon/light_sensor.png";
+		this.name = nme;
 		this.state = "Nothing";
 		this.update = function(robot){
                         var touchList = collisions(robot, this);
@@ -95,9 +95,9 @@
 	LightSensor.states = ["Nothing", "Black", "White"];
 	
 	var gyroNameCounter = 0;
-	var GyroSensor = Sensors.GyroSensor = function(){
-		this.imageSrc = "img/lightsensor.bmp";
-		this.name = "GyroSensor" + (gyroNameCounter++);
+	var GyroSensor = Sensors.GyroSensor = function(nme){
+		this.imageSrc = "PI_hackathon/compass.png";
+		this.name = nme;
 		this.state = 0;
 		this.update = function(robot){
                     this.state = (robot.rotation + 720) % 360;
@@ -111,9 +111,9 @@
 	GyroSensor.states = [];
 	
 	var proxNameCounter = 0;
-	var ProximitySensor = Sensors.ProximitySensor = function(){
+	var ProximitySensor = Sensors.ProximitySensor = function(nme){
 		this.imageSrc = "PI_hackathon/proximity_sensor.png";
-		this.name = "ProximitySensor" + (proxNameCounter++);
+		this.name = nme;
 		this.state = "Off";
 		this.update = function(robot){
                         var touchList = collisions(robot, this);

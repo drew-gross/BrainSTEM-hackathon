@@ -29,17 +29,13 @@
 			});
 			});
 	
-	level.sensors = [new Sensors.ProximitySensor(), new Sensors.GyroSensor(),
-            new Sensors.LightSensor()];
-	level.actuators = [new Actuators.LeftMotor(), new Actuators.RightMotor()];
-//drews version
-	level.startPosition = { x: 20 + xTranslate, y: 200  + yTranslate};
-    level.endPosition = {x: 10 + xTranslate, y: 250 + yTranslate, w: 60, h: 60};
-// normal version
-/*
+	level.sensors = [new Sensors.ProximitySensor("ProxSensor"), new Sensors.GyroSensor("Compass"),
+            new Sensors.LightSensor("LightSensor")];
+	level.actuators = [new Actuators.LeftMotor("LeftMotor"), new Actuators.RightMotor("RightMotor")];
+
 	level.startPosition = { x: 20  + yTranslate, y: 20 + xTranslate};
     level.endPosition = {x: 250 + yTranslate, y: 10 + xTranslate, w: 60, h: 60};
-*/
+
     level.instructions = "<p>Using what you know about gyroscopes and light sensors, \
 	have your robot traverse the colour-marked passage to get to the goal.</p>";
 })();

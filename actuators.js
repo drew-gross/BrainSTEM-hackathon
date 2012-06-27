@@ -2,18 +2,18 @@
     window.Actuators = {};
 
     var LeftMotorNameCounter = 0;
-    var LeftMotor = Actuators.LeftMotor = function() {
+    var LeftMotor = Actuators.LeftMotor = function(nme) {
         this.imageSrc = "PI_hackathon/motorwheel_left.png";
-        this.name = "LeftMotor" + (LeftMotorNameCounter++);
+        this.name = nme;
         this.type = "LeftMotor";
         this.state = 0;
         this.helptext = this.name + ". Use this motor by setting outputs." + this.name + " to any number.";
     };
 	
 	var RightMotorNameCounter = 0;
-    var RightMotor = Actuators.RightMotor = function() {
+    var RightMotor = Actuators.RightMotor = function(nme) {
         this.imageSrc = "PI_hackathon/motorwheel_right.png";
-        this.name = "RightMotor" + (RightMotorNameCounter++);
+        this.name = nme;
         this.type = "RightMotor";
         this.state = 0;
         this.helptext = this.name + ". Use this motor by setting outputs." + this.name + " to any number.";
