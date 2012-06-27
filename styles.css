@@ -107,7 +107,8 @@ img.robot-part{
 
 #victory-screen
 {
-    text-align:center;
+    width: 400px;
+	text-align:center;
 }
 #instructions
 {
