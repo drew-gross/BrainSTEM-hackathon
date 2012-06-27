@@ -64,6 +64,9 @@ $(function () {
     });
     viewModel.currentLevel = 0;
     viewModel.level(Game.levels[viewModel.currentLevel]);
+    viewModel.instructions = ko.computed(function () {
+        return viewModel.level().instructions;
+    });
     viewModel.sensors = ko.computed(function(){
         return _.collect(viewModel.level().sensors, function (sensor) {
             return { object: sensor, position: ko.observable(null) };
