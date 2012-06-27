@@ -12,7 +12,7 @@ if(inputs.ColorSensor === "Black")
 {
     if(memory.state === 1)
     {
-        memory.desiredDirection = (memory.desiredDirection + 270) % 360;
+        memory.desiredDirection = (90 + memory.desiredDirection) % 360;
     	memory.state = 0;
     }
 }
@@ -20,7 +20,7 @@ else if (inputs.ColorSensor === "Red")
 {
     if(memory.state === 1)
     {
-        memory.desiredDirection = (90 + memory.desiredDirection) % 360;
+        memory.desiredDirection = (memory.desiredDirection + 270) % 360;
     	memory.state = 0;
     }
 }
@@ -56,6 +56,3 @@ else
     	outputs.RightMotor = missMagnitude*10 + 0.2;
     }
 }
-
-		
-			

@@ -16,7 +16,7 @@
 			});
 			});
 			
-	level.sensors = [new Sensors.LightSensor("ColourSensor"), new Sensors.GyroSensor("Compass")];
+	level.sensors = [new Sensors.LightSensor("ColorSensor"), new Sensors.GyroSensor("Compass")];
 	level.actuators = [new Actuators.LeftMotor("LeftMotor"), new Actuators.RightMotor("RightMotor")];
 	level.startPosition = { x: 300, y: 30 };
     level.endPosition = {x: 5 * 80 + 10, y: 400, w: 140, h: 70};
