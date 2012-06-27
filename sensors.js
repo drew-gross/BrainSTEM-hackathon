@@ -132,7 +132,7 @@
             attachHitSensor(robot, this, position);
         };
 		//I know, I know, magic numbers are bad.
-        this.points = makeArc(10, Math.PI - 0.0001, 5);
+        this.points = makeArc(10, Math.PI*2/3, 5);
         this.helptext = this.name + ". Use this sensor by reading inputs." + this.name + ", the value will be 'On' or 'Off'";
 	};
 	ProximitySensor.states = ["Off", "On"];
