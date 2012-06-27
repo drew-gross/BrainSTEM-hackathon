@@ -96,16 +96,17 @@
         </div>
 		<div class="sextarea">
 			<textarea id="usercode" cols="83" rows="30">
-if(inputs.ProximitySensor2 === "Black"){
-	outputs.LeftMotor1 = 0.5;
-	outputs.RightMotor1 = -0.5;
+if(memory.initialized === undefined)
+{
+	//Initialization goes here
+	//e.g. memory.state = 1;
+	
+	memory.initialized = "Yes";
+}
 
-}
-else{
-	outputs.LeftMotor1 = 0.5;
-	outputs.RightMotor1 = 2.5;
-}
-console.log(inputs.ProximitySensor2);
+//The code below this line will be
+//evaluated over and over again.
+//e.g. output.Motor0 = 1.0;
 			</textarea>
 		</div>
 	</div>
