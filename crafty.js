@@ -63,6 +63,8 @@
     rlist = /\s*,\s*/,
     rspace = /\s+/;
 
+    Crafty.entities = entities;
+
     /**@
     * #Crafty Core
     * @category Core
