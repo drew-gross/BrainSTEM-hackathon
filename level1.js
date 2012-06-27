@@ -28,7 +28,7 @@
 	level.sensors = [new Sensors.ProximitySensor(), new Sensors.GyroSensor(),
             new Sensors.LightSensor()];
 	level.actuators = [new Actuators.LeftMotor(), new Actuators.RightMotor()];
-	level.startPosition = { x: 20 + xTranslate, y: 20  + yTranslate};
+	level.startPosition = { x: 20 + xTranslate, y: 200  + yTranslate};
     level.endPosition = {x: 10 + xTranslate, y: 250 + yTranslate, w: 60, h: 60};
     level.instructions = "<p>Using what you know about gyroscopes and light sensors, \
 	have your robot traverse the colour-marked passage to get to the goal zone.</p>";
