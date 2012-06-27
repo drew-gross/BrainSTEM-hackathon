@@ -155,5 +155,5 @@ Game.resetRobot = function() {
     }, 50);
 };
 
-loadLevel(window.Level3);
+loadLevel(window.Level1);
 });
