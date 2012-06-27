@@ -1,16 +1,23 @@
-$(function(){
+(function(){
 var PPM = 30; // Pixels per meter.
-
-Crafty.init(700, 480);
-Crafty.DrawManager.draw = Crafty.DrawManager.drawAll;
-Crafty.Box2D.init();
-Crafty.background('rgb(255,255,255)');
 
 window.Game = {}
 var goal;
 var level;
 
-var loadLevel = Game.loadLevel = function(theLevel){
+
+
+var loadLevel = Game.loadLevel = function (theLevel) {
+    if (level===undefined){
+        Crafty.init(700, 480);
+        Crafty.DrawManager.draw = Crafty.DrawManager.drawAll; //force redraw everytime
+        Crafty.Box2D.init();
+        Crafty.background('rgb(255,255,255)');
+    }
+    _.each(Crafty.entities, function(entity){
+        entity.destroy();
+    });
+
     window.level = Game.level = level = theLevel;
     goal = Component.Goal(level.endPosition);
     _.each(level.walls, function(pointlist,i){
@@ -155,5 +162,4 @@ Game.resetRobot = function() {
     }, 50);
 };
 
-loadLevel(window.Level1);
-});
+})();

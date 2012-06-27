@@ -24,8 +24,8 @@
 			});
 			});
 	
-	level.sensors = [new Sensors.ProximitySensor(), new Sensors.ProximitySensor()];
-	level.actuators = [new Actuators.LeftMotor(), new Actuators.RightMotor()];
+	level.sensors = [new Sensors.ProximitySensor("ProxSensor0"), new Sensors.ProximitySensor("ProxSensor1")];
+	level.actuators = [new Actuators.LeftMotor("LeftMotor"), new Actuators.RightMotor("RightMotor")];
     level.startPosition = {x:16, y:16};
     level.endPosition = { x: 8*80 - 20, y: 3*80 + 42, w: 50, h: 48 };
     level.instructions = "This is a classic puzzle about solving mazes. Use the knowledge that you've\

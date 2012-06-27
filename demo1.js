@@ -12,7 +12,8 @@
 			});
 			
 	level.sensors = [];
-	level.actuators = [new Actuators.LeftMotor(), new Actuators.RightMotor()];
+	
+	level.actuators = [new Actuators.LeftMotor("LeftMotor"), new Actuators.RightMotor("RightMotor")];
 	level.startPosition = { x: 380, y: 40 };
     level.endPosition = {x: 4 * 80 + 10, y: 5 * 80, w: 140, h: 70};
     level.instructions = 
@@ -22,7 +23,7 @@
 	'below. Try to make the robot reach the goal by adding motors to your '+
 	'robot. You can control the motors by assigning speeds to the motors '+
 	'in the code window. Try this example:'+
-	'<p><code>outputs.RightMotor0 = 0.5;</code></p>'+
+	'<p><code>outputs.RightMotor = 0.5;</code></p>'+
 	'Then, upload your code to see what happens! If you\'ve attached the '+
 	'right facing motor, your robot should start moving.';
 })();
