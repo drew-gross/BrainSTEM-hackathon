@@ -52,7 +52,7 @@
             var rawList = robot.body.GetContactList();
             while(rawList){
                 var contact = rawList.contact;
-                if(contact.isTouching() && (
+                if(contact.IsTouching() && (
                             contact.GetFixtureA() === sensor.fixture ||
                             contact.GetFixtureB() === sensor.fixture)){
                         var id = rawList.other.GetUserData();
