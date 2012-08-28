@@ -12,10 +12,14 @@ $(function () {
     };
 
     //set up the code editor
+    enableHighlight = true
+    if (navigator.vendor === "Apple Computer, Inc.") {
+        enableHighlight = false;
+    }
     editAreaLoader.init({
         id: "usercode"		// textarea id
 	    , syntax: "js"			// syntax to be uses for highgliting
-	    , start_highlight: true		// to display with highlight mode on start-up
+	    , start_highlight: enableHighlight		// to display with highlight mode on start-up
     });
 
     //set up knockout stuff
