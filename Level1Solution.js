@@ -33,13 +33,13 @@ if(missMagnitude  < 0.1)
 	
     if(direction < 0)
     {
-    	outputs.LeftMotor = 5 + missMagnitude * 20;
-    	outputs.RightMotor = 5 - missMagnitude * 20;
+    	outputs.LeftMotor = 15 + missMagnitude * 20;
+    	outputs.RightMotor = 15 - missMagnitude * 20;
     }
     else
     {
-    	outputs.LeftMotor = 5 - missMagnitude * 20;
-    	outputs.RightMotor = 5 + missMagnitude * 20;
+    	outputs.LeftMotor = 15 - missMagnitude * 20;
+    	outputs.RightMotor = 15 + missMagnitude * 20;
     }
 	
 } 
