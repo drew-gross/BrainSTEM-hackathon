@@ -105,8 +105,8 @@ var Robot = function(inputs, outputs){
                     inputs[input.name] =
                     input.state;
                 });
-                var outputs = UserCode.run(inputs, this.memory);
-                _.each(outputs,function(value, key){
+                var outputs = UserCode.run(inputs, this.memory, this);
+                _.each(this.useroutputs,function(value, key){
                     var out = _.find(self.outputs, function(out){
                         return out.object.name === key;
                     });

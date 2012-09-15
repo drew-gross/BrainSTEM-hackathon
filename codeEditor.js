@@ -104,15 +104,20 @@ $(function () {
     UserCode.code = "";
     UserCode.inputs = [];
     UserCode.outputs = [];
-    UserCode.run = function(inputs, memory){
+    UserCode.run = function(inputs, memory, robot){
         try {
-            var outputs = {};
-            eval(UserCode.code);
-            return outputs;
+            var userCodeRunner = new Worker('userCodeWorker.js');
+            userCodeRunner.addEventListener('message', function (e) {
+                robot.useroutputs = e.data;
+            }, false);
+
+            userCodeRunner.postMessage({'code':UserCode.code, 'inputs':inputs, 'memory':memory});
+
+            return {};
         } catch(err){
-	    confirm(err);
+            confirm(err);
             Game.running = false;
-            // TODO: Display the error to the user.
+            alert(err);
             return {};
         }
     };
