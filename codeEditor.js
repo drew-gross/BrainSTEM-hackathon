@@ -105,8 +105,12 @@ $(function () {
     UserCode.inputs = [];
     UserCode.outputs = [];
     UserCode.robot = {};
-    var userCodeRunner = new Worker('userCodeWorker.js');
-    userCodeRunner.addEventListener('message', function (e) {
+    UserCode.running = false;
+    UserCode.runtime = 0;
+    UserCode.userCodeRunner = new Worker('userCodeWorker.js');
+    UserCode.userCodeRunner.addEventListener('message', function (e) {
+        UserCode.running = false;
+        UserCode.runtime = 0;
         if (typeof e.data === "string") {
             $.fancybox('<div id="victory-screen">' + e.data + '</div>');
             Game.running = false;
@@ -116,7 +120,30 @@ $(function () {
     }, false);
     UserCode.run = function(inputs, memory, robot){
         UserCode.robot = robot;
-        userCodeRunner.postMessage({'code':UserCode.code, 'inputs':inputs, 'memory':memory});
+        if (UserCode.running === false) {
+            UserCode.running = true;
+            UserCode.userCodeRunner.postMessage({'code':UserCode.code, 'inputs':inputs, 'memory':memory});
+        } else {
+            UserCode.runtime = UserCode.runtime + 1;
+            if (UserCode.runtime > 1000) {
+                UserCode.userCodeRunner.terminate();
+                UserCode.userCodeRunner = new Worker('userCodeWorker.js');
+                UserCode.userCodeRunner.addEventListener('message', function (e) {
+                    UserCode.running = false;
+                    UserCode.runtime = 0;
+                    if (typeof e.data === "string") {
+                        $.fancybox('<div id="victory-screen">' + e.data + '</div>');
+                        Game.running = false;
+                    } else {
+                        UserCode.robot.useroutputs = e.data;   
+                    }
+                }, false);
+                $.fancybox('<div id="victory-screen">' + 'Your code is taking a long time! Maybe you have an infinite loop?' + '</div>');
+                Game.running = false;
+                UserCode.runtime = 0;
+                UserCode.running = false;
+            }
+        }
     };
 
     $("#run").click(function () {

@@ -139,11 +139,11 @@ var Robot = function(inputs, outputs){
                 makeAdjustments(this.body, LeftMotors.concat(RightMotors));
                 if (theRobot.intersect(goal)) {
                     Game.running = false;
-                    var victoryHtml
+                    var victoryHtml  ='';
                     if (ViewModel.currentLevel+1 < Game.levels.length) {
                         victoryHtml = '<div id="victory-screen">Congratulations!<p><img src="PI_hackathon/victory_button.png" id="next-level"/></p></div>'
                     } else {
-                        var victoryHtml = '<div id="victory-screen">Congratulations! You beat the whole game!</div>'
+                        victoryHtml = '<div id="victory-screen">Congratulations! You beat the whole game!</div>'
                     }
                     
                     $.fancybox(victoryHtml);
