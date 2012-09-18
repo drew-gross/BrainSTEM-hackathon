@@ -122,6 +122,7 @@ $(function () {
         UserCode.robot = robot;
         if (UserCode.running === false) {
             UserCode.running = true;
+            UserCode.runtime = 0;
             UserCode.userCodeRunner.postMessage({'code':UserCode.code, 'inputs':inputs, 'memory':memory});
         } else {
             UserCode.runtime = UserCode.runtime + 1;

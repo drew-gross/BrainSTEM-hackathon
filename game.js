@@ -165,6 +165,22 @@ var robot;
 Game.resetRobot = function() {
     if(robot){robot.destroy();}
     _.delay(function(){
+        if (UserCode.running !== false) {
+            UserCode.userCodeRunner.terminate();
+            UserCode.userCodeRunner = new Worker('userCodeWorker.js');
+            UserCode.userCodeRunner.addEventListener('message', function (e) {
+                UserCode.running = false;
+                UserCode.runtime = 0;
+                if (typeof e.data === "string") {
+                    $.fancybox('<div id="victory-screen">' + e.data + '</div>');
+                    Game.running = false;
+                } else {
+                    UserCode.robot.useroutputs = e.data;   
+                }
+            }, false);
+            UserCode.runtime = 0;
+            UserCode.running = false;
+        }
         robot = Robot(UserCode.inputs, UserCode.outputs);
     }, 50);
 };
