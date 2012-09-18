@@ -107,20 +107,16 @@ $(function () {
     UserCode.robot = {};
     var userCodeRunner = new Worker('userCodeWorker.js');
     userCodeRunner.addEventListener('message', function (e) {
-        UserCode.robot.useroutputs = e.data;
+        if (typeof e.data === "string") {
+            $.fancybox('<div id="victory-screen">' + e.data + '</div>');
+            Game.running = false;
+        } else {
+            UserCode.robot.useroutputs = e.data;   
+        }
     }, false);
     UserCode.run = function(inputs, memory, robot){
-        try {
-            UserCode.robot = robot;
-            userCodeRunner.postMessage({'code':UserCode.code, 'inputs':inputs, 'memory':memory});
-
-            return {};
-        } catch(err){
-            confirm(err);
-            Game.running = false;
-            alert(err);
-            return {};
-        }
+        UserCode.robot = robot;
+        userCodeRunner.postMessage({'code':UserCode.code, 'inputs':inputs, 'memory':memory});
     };
 
     $("#run").click(function () {
