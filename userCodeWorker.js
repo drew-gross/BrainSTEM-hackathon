@@ -4,5 +4,4 @@ self.addEventListener('message', function (e) {
 	var inputs = e.data['inputs'];
 	eval(e.data['code']);
 	postMessage(outputs);
-	self.close();
 }, false);

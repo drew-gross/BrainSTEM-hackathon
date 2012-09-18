@@ -104,13 +104,14 @@ $(function () {
     UserCode.code = "";
     UserCode.inputs = [];
     UserCode.outputs = [];
+    UserCode.robot = {};
+    var userCodeRunner = new Worker('userCodeWorker.js');
+    userCodeRunner.addEventListener('message', function (e) {
+        UserCode.robot.useroutputs = e.data;
+    }, false);
     UserCode.run = function(inputs, memory, robot){
         try {
-            var userCodeRunner = new Worker('userCodeWorker.js');
-            userCodeRunner.addEventListener('message', function (e) {
-                robot.useroutputs = e.data;
-            }, false);
-
+            UserCode.robot = robot;
             userCodeRunner.postMessage({'code':UserCode.code, 'inputs':inputs, 'memory':memory});
 
             return {};
